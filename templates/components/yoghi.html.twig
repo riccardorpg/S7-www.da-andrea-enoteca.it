@@ -1,0 +1,159 @@
+{# ============================================================
+   Yoghi — mascotte animata a figura intera (SVG, on-brand)
+   Orsetto con corpo, pancia, gambe e zampe che sorseggia lo
+   spritz: bollicine che salgono, sorso, occhiolino degli
+   occhiali, orecchie che si muovono. Tutto in CSS (vedi
+   da-andrea.css, sezione "Yoghi"), rispetta prefers-reduced-motion.
+   ============================================================ #}
+<div class="da-yoghi-stage" aria-hidden="false">
+	<svg class="da-yoghi" viewBox="0 0 440 660" role="img"
+	     aria-label="Yoghi, la mascotte di Da Andrea, un orsetto che sorseggia un cocktail">
+		<title>Yoghi si gode un cocktail Da Andrea</title>
+
+		<defs>
+			<linearGradient id="yFur" x1="0" y1="0" x2="0" y2="1">
+				<stop offset="0" stop-color="#D2A063"/>
+				<stop offset="1" stop-color="#9E6C39"/>
+			</linearGradient>
+			<linearGradient id="yFurDark" x1="0" y1="0" x2="0" y2="1">
+				<stop offset="0" stop-color="#A9773F"/>
+				<stop offset="1" stop-color="#7B5027"/>
+			</linearGradient>
+			<radialGradient id="yLens" cx="0.4" cy="0.35" r="0.8">
+				<stop offset="0" stop-color="#3A332C"/>
+				<stop offset="1" stop-color="#12100E"/>
+			</radialGradient>
+			<linearGradient id="yHat" x1="0" y1="0" x2="0" y2="1">
+				<stop offset="0" stop-color="#7D2731"/>
+				<stop offset="1" stop-color="#4A161C"/>
+			</linearGradient>
+			<linearGradient id="yDrink" x1="0" y1="0" x2="0" y2="1">
+				<stop offset="0" stop-color="#F2A24A"/>
+				<stop offset="1" stop-color="#D9542F"/>
+			</linearGradient>
+			<clipPath id="yBowlClip"><circle cx="140" cy="368" r="46"/></clipPath>
+		</defs>
+
+		<!-- alone caldo dietro -->
+		<ellipse class="da-yoghi__halo" cx="220" cy="330" rx="205" ry="235"
+		         fill="rgba(217,93,57,.13)"/>
+
+		<g class="da-yoghi__all">
+
+			<!-- ===== CORPO (gambe, torso, pancia, braccio destro) ===== -->
+			<g class="da-yoghi__body">
+				<!-- zampe / piedi -->
+				<ellipse cx="172" cy="565" rx="47" ry="37" fill="url(#yFurDark)"/>
+				<ellipse cx="270" cy="565" rx="47" ry="37" fill="url(#yFurDark)"/>
+				<ellipse cx="172" cy="572" rx="23" ry="15" fill="#C87E5B"/>
+				<ellipse cx="270" cy="572" rx="23" ry="15" fill="#C87E5B"/>
+				<circle cx="156" cy="552" r="5" fill="#C87E5B"/><circle cx="172" cy="548" r="5" fill="#C87E5B"/><circle cx="188" cy="552" r="5" fill="#C87E5B"/>
+				<circle cx="254" cy="552" r="5" fill="#C87E5B"/><circle cx="270" cy="548" r="5" fill="#C87E5B"/><circle cx="286" cy="552" r="5" fill="#C87E5B"/>
+
+				<!-- torso -->
+				<ellipse cx="220" cy="410" rx="124" ry="142" fill="url(#yFur)"/>
+				<!-- pancia chiara -->
+				<ellipse cx="220" cy="432" rx="83" ry="104" fill="#EAD3A6"/>
+
+				<!-- braccio destro (rilassato, leggero dondolio) -->
+				<g class="da-yoghi__arm-r">
+					<rect x="318" y="300" width="46" height="156" rx="23" fill="url(#yFur)" transform="rotate(9 341 305)"/>
+					<circle cx="356" cy="458" r="28" fill="url(#yFur)"/>
+					<ellipse cx="356" cy="462" rx="15" ry="10" fill="#EAD3A6" opacity=".6"/>
+				</g>
+			</g>
+
+			<!-- ===== TESTA (orecchie, occhiali, cappello) ===== -->
+			<g class="da-yoghi__head">
+
+				<g class="da-yoghi__ear da-yoghi__ear--l">
+					<circle cx="128" cy="88" r="36" fill="url(#yFur)"/>
+					<circle cx="133" cy="90" r="19" fill="#C87E5B"/>
+				</g>
+				<g class="da-yoghi__ear da-yoghi__ear--r">
+					<circle cx="312" cy="88" r="36" fill="url(#yFur)"/>
+					<circle cx="307" cy="90" r="19" fill="#C87E5B"/>
+				</g>
+
+				<!-- testa -->
+				<ellipse cx="220" cy="168" rx="120" ry="112" fill="url(#yFur)"/>
+
+				<!-- muso -->
+				<ellipse cx="220" cy="222" rx="72" ry="52" fill="#EAD3A6"/>
+				<path d="M188,228 Q220,262 252,228 Q220,246 188,228 Z" fill="#6E2029"/>
+				<ellipse cx="220" cy="240" rx="16" ry="7" fill="#C4505A"/>
+				<path d="M199,182 Q220,173 241,182 Q245,199 220,208 Q195,199 199,182 Z" fill="#241C17"/>
+				<ellipse cx="211" cy="188" rx="5" ry="3.2" fill="#5a4a3f" opacity=".7"/>
+
+				<!-- occhiali da sole tondi -->
+				<g class="da-yoghi__shades">
+					<path d="M120,158 L102,152" stroke="#141210" stroke-width="8" stroke-linecap="round"/>
+					<path d="M320,158 L338,152" stroke="#141210" stroke-width="8" stroke-linecap="round"/>
+					<circle cx="166" cy="158" r="44" fill="url(#yLens)" stroke="#141210" stroke-width="6"/>
+					<circle cx="274" cy="158" r="44" fill="url(#yLens)" stroke="#141210" stroke-width="6"/>
+					<path d="M210,150 Q220,145 230,150" stroke="#141210" stroke-width="8" stroke-linecap="round" fill="none"/>
+					<g class="da-yoghi__glint">
+						<circle cx="153" cy="143" r="11" fill="#fff" opacity=".85"/>
+						<circle cx="172" cy="152" r="5"  fill="#fff" opacity=".7"/>
+						<circle cx="261" cy="143" r="11" fill="#fff" opacity=".85"/>
+						<circle cx="280" cy="152" r="5"  fill="#fff" opacity=".7"/>
+					</g>
+				</g>
+
+				<!-- cappello alpino (wine + piuma ember) -->
+				<g class="da-yoghi__hat">
+					<ellipse cx="220" cy="100" rx="150" ry="30" fill="url(#yHat)"/>
+					<path d="M124,100 Q120,14 220,8 Q320,14 316,100 Z" fill="url(#yHat)"/>
+					<path d="M126,90 Q220,110 314,90 L314,102 Q220,122 126,102 Z" fill="#D95D39"/>
+					<g class="da-yoghi__feather">
+						<path d="M298,74 C314,32 322,6 314,-14 C296,10 290,46 296,76 Z" fill="#C8974E"/>
+						<path d="M306,70 C312,40 316,18 313,-2" stroke="#8a6a35" stroke-width="2.4" fill="none"/>
+					</g>
+				</g>
+			</g>
+
+			<!-- ===== BRACCIO SINISTRO + BICCHIERE (si alza per il sorso) ===== -->
+			<g class="da-yoghi__arm">
+				<!-- avambraccio che sale verso il bicchiere -->
+				<rect x="100" y="298" width="42" height="92" rx="21" fill="url(#yFur)" transform="rotate(-16 121 302)"/>
+
+				<!-- coppa del bicchiere -->
+				<circle cx="140" cy="368" r="46" fill="rgba(255,255,255,.14)"
+				        stroke="rgba(255,255,255,.55)" stroke-width="3"/>
+
+				<!-- liquido + bollicine (clip alla coppa) -->
+				<g clip-path="url(#yBowlClip)">
+					<rect class="da-yoghi__liquid" x="94" y="350" width="92" height="72" fill="url(#yDrink)"/>
+					<ellipse cx="140" cy="350" rx="46" ry="8" fill="#F6B463"/>
+					<rect x="120" y="364" width="22" height="22" rx="6" transform="rotate(16 131 375)" fill="rgba(255,255,255,.5)"/>
+					<rect x="142" y="384" width="20" height="20" rx="6" transform="rotate(-10 152 394)" fill="rgba(255,255,255,.42)"/>
+					<circle class="da-yoghi__bubble b1" cx="126" cy="404" r="4" fill="#fff"/>
+					<circle class="da-yoghi__bubble b2" cx="150" cy="408" r="3" fill="#fff"/>
+					<circle class="da-yoghi__bubble b3" cx="138" cy="400" r="5" fill="#fff"/>
+					<circle class="da-yoghi__bubble b4" cx="160" cy="406" r="3" fill="#fff"/>
+					<circle class="da-yoghi__bubble b5" cx="120" cy="402" r="3" fill="#fff"/>
+				</g>
+
+				<!-- fetta d'arancia sul bordo -->
+				<g transform="rotate(-18 176 334)">
+					<circle cx="176" cy="334" r="20" fill="#F08A2E" stroke="#C9611A" stroke-width="3"/>
+					<circle cx="176" cy="334" r="12" fill="#FBC26B"/>
+					<path d="M176,334 L176,315 M176,334 L192,325 M176,334 L192,343 M176,334 L160,343 M176,334 L160,325 M176,334 L176,353"
+					      stroke="#C9611A" stroke-width="2"/>
+				</g>
+				<!-- cannuccia -->
+				<path d="M168,320 L130,404" stroke="#7D2731" stroke-width="7" stroke-linecap="round"/>
+				<path d="M168,320 L130,404" stroke="#F9F6F0" stroke-width="7" stroke-linecap="round" stroke-dasharray="9 11"/>
+
+				<!-- zampa che regge il bicchiere -->
+				<g class="da-yoghi__paw">
+					<ellipse cx="140" cy="406" rx="44" ry="26" fill="url(#yFur)"/>
+					<path d="M114,398 q0,22 12,28 M140,400 q0,24 0,30 M166,398 q0,22 -12,28"
+					      stroke="#7B5027" stroke-width="3" fill="none" opacity=".55"/>
+					<ellipse cx="140" cy="396" rx="20" ry="11" fill="#EAD3A6" opacity=".6"/>
+				</g>
+			</g>
+
+		</g>
+	</svg>
+</div>

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /login
+Disallow: /recover-password
+Disallow: /reset-password/
+
+Sitemap: https://www.cogetisrl.it/sitemap.xml

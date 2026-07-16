@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="content-language" content="it">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<meta name="author" content="R.P.G. Servizi Multimediali">
+	<meta name="copyright" content="PRIMIGENA GROUP SRL">
+	<meta name="theme" content="Canvas - ThemeForest 8">
+	<meta name="symfony-version" content="7.4">
+
+	<meta name="description" content="{% block meta_description %}Da Andrea, Cucina con Enoteca a Casorezzo (MI): non un bar, non un ristorante tradizionale, ma il vostro spazio. Il tavolo è vostro dalle 19 a chiusura, senza secondi turni. Una cantina che promette di crescere.{% endblock %}">
+
+	<link rel="icon" href="{{ asset('favicon.ico') }}" type="image/png">
+
+	{% block stylesheets %}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Cookie&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/font-icons.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/swiper.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/personal/classes.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/personal/custom.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/personal/themeOverride.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/da-andrea.css') }}">
+
+    {% endblock %}
+
+	<title>{% block title %}Da Andrea · Cucina con Enoteca · Casorezzo (MI){% endblock %}</title>
+
+</head>
+
+<body>
+
+	{% block header %}
+	{% set on_home = app.request.get('_route') == 'homepage' %}
+	<nav class="da-nav">
+		<div class="da-nav-inner">
+			<a class="da-logo" data-hash data-hash-offset="0" {% if on_home %}href="#" data-href="#top"{% else %}href="{{ path('homepage') }}"{% endif %}>
+				<img src="{{ asset('images/graphics_2026_07_15/logo.png') }}" alt="Da Andrea — Cucina con Enoteca" class="da-logo-img">
+			</a>
+
+			<div class="da-desktop-nav">
+				<a class="da-nav-link" data-hash data-hash-offset="0" {% if on_home %}href="#" data-href="#top"{% else %}href="{{ path('homepage') }}"{% endif %}>Homepage</a>
+				<a class="da-nav-link" data-hash data-hash-offset="50" {% if on_home %}href="#" data-href="#filosofia"{% else %}href="{{ path('homepage_with_section', {'section': 'filosofia'}) }}"{% endif %}>Chi siamo</a>
+				<a class="da-nav-link" data-hash data-hash-offset="50" {% if on_home %}href="#" data-href="#menu"{% else %}href="{{ path('homepage_with_section', {'section': 'menu'}) }}"{% endif %}>La carta</a>
+				<a class="da-nav-link" data-hash data-hash-offset="50" {% if on_home %}href="#" data-href="#contatti"{% else %}href="{{ path('homepage_with_section', {'section': 'contatti'}) }}"{% endif %}>Contatti</a>
+				<a class="da-cta da-btn-3d" data-hash data-hash-offset="50" {% if on_home %}href="#" data-href="#prenota"{% else %}href="{{ path('homepage_with_section', {'section': 'prenota'}) }}"{% endif %}>Prenota un Tavolo</a>
+			</div>
+
+			<button class="da-burger" aria-label="Menu">
+				<i class="fa-solid fa-bars"></i>
+			</button>
+		</div>
+
+		{# Mobile drawer #}
+		<div class="da-drawer">
+			<a data-hash data-hash-offset="0" {% if on_home %}href="#" data-href="#top"{% else %}href="{{ path('homepage') }}"{% endif %}>Homepage</a>
+			<a data-hash data-hash-offset="50" {% if on_home %}href="#" data-href="#filosofia"{% else %}href="{{ path('homepage_with_section', {'section': 'filosofia'}) }}"{% endif %}>Chi siamo</a>
+			<a data-hash data-hash-offset="50" {% if on_home %}href="#" data-href="#menu"{% else %}href="{{ path('homepage_with_section', {'section': 'menu'}) }}"{% endif %}>La carta</a>
+			<a data-hash data-hash-offset="50" {% if on_home %}href="#" data-href="#contatti"{% else %}href="{{ path('homepage_with_section', {'section': 'contatti'}) }}"{% endif %}>Contatti</a>
+			<a class="da-cta" data-hash data-hash-offset="50" {% if on_home %}href="#" data-href="#prenota"{% else %}href="{{ path('homepage_with_section', {'section': 'prenota'}) }}"{% endif %}>Prenota un Tavolo</a>
+		</div>
+	</nav>
+	{% endblock %}
+
+	{% block body %}{% endblock %}
+
+	{% block footer %}
+	<footer class="da-footer">
+		<div class="da-footer-inner">
+			<div class="da-footer-cols">
+
+				{# Colonna 1 — Logo, presentazione e social #}
+				<div class="da-footer-col brand">
+					<div class="da-footer-logo">
+						<img src="{{ asset('images/graphics_2026_07_15/logo.png') }}" alt="Da Andrea — Cucina con Enoteca" class="da-logo-img">
+					</div>
+					<p class="da-footer-about">Non un bar, non un ristorante tradizionale: il vostro spazio a Casorezzo. Cucina con enoteca, dove il tavolo è vostro dalle 19 fino a chiusura.</p>
+					<div class="da-socials">
+						<a href="https://www.instagram.com/cucina.da.andrea/" target="_blank" rel="noopener" class="da-social" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+						<a href="https://www.facebook.com/people/Da-Andrea/61590817715926/" target="_blank" rel="noopener" class="da-social" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+						<a href="https://wa.me/393518595639" target="_blank" rel="noopener" class="da-social" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+					</div>
+				</div>
+
+				{# Colonna 2 — Dati di contatto #}
+				<div class="da-footer-col">
+					<h4>Da Andrea S.r.l.</h4>
+					<ul class="da-fdata">
+						<li><i class="fa-solid fa-location-dot"></i> <span>Via Inveruno 30, 20003 Casorezzo (MI)</span></li>
+						<li><i class="fa-solid fa-phone"></i> <a href="tel:+393518595639">+39 351 859 5639</a></li>
+						<li><i class="fa-solid fa-envelope"></i> <a href="mailto:cucina.da.andrea@gmail.com">cucina.da.andrea@gmail.com</a></li>
+						<li><i class="fa-solid fa-clock"></i> <span>Tutte le sere dalle 19:00<br>Lunedì chiuso</span></li>
+					</ul>
+				</div>
+
+				{# Colonna 3 — Dati fiscali #}
+				<div class="da-footer-col">
+					<h4>Dati fiscali</h4>
+					<ul class="da-fdata plain">
+						<li><strong>P.IVA / C.F.</strong> <span class="val">00000000000</span></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+
+		<div id="copyrights">
+			<div class="container">
+				<div class="da-copyrights-row">
+					<p class="da-copy">&copy; {{ "now"|date("Y") }} Da Andrea · Cucina con Enoteca · Casorezzo</p>
+					<div class="da-copy-links">
+						<a href="https://www.iubenda.com/privacy-policy/{{ IUBENDA_IT }}" class="iubenda-white iubenda-noiframe iubenda-embed" title="Privacy Policy">Privacy Policy</a>
+						<a href="https://www.iubenda.com/privacy-policy/{{ IUBENDA_IT }}/cookie-policy" class="iubenda-white iubenda-noiframe iubenda-embed" title="Cookie Policy">Cookie Policy</a>
+						<a href="https://rpgmultimedia.it" target="_blank" class="powered_by"><img src="https://www.rpgmultimedia.it/favicon.ico" alt="R.P.G. Multimedia">Powered by R.P.G.</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	{% endblock %}
+
+	
+	{% block javascripts %}
+        <script src="{{ asset('js/da-andrea.js') }}"></script>
+        <script src="{{ asset('js/plugins.min.js') }}"></script>
+        <script src="{{ asset('js/functions.js') }}"></script>
+        {% include 'components/js/iubenda.html.twig' %}
+        {% include 'components/js/ga4.html.twig' %}
+    {% endblock %}
+
+</body>
+</html>

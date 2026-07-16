@@ -1,0 +1,283 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Da Andrea · Cucina con Enoteca · Casorezzo (MI){% endblock %}
+
+{% block meta_description %}Da Andrea, Cucina con Enoteca a Casorezzo (MI): non un bar, non un ristorante tradizionale, ma il vostro spazio. Il tavolo è vostro dalle 19 a chiusura, senza secondi turni. Una cantina che promette di crescere.{% endblock %}
+
+{# ============================ Data ============================ #}
+{# Le cinque vite di Andrea — un soprannome per ognuna #}
+{% set lives = [
+	{ name: 'RAI',    note: '6 anni. Un campo di calcio.' },
+	{ name: 'MIURA',  note: 'Le medie. Un eroe giapponese.' },
+	{ name: 'PIPP8',  note: 'Si comincia a viaggiare.' },
+	{ name: 'YOGHI',  note: "L'amicizia, quella vera." },
+	{ name: 'ANDREA', note: 'Oggi. La sintesi di tutto.' }
+] %}
+
+{% block body %}
+
+	{# ============================ Hero ============================ #}
+	<header id="top" class="da-hero">
+		<canvas id="ember-canvas"></canvas>
+		<div class="da-hero-glow"></div>
+		<div class="da-hero-fade"></div>
+
+		<div class="da-hero-inner with-yoghi">
+			<div class="da-hero-copy">
+				<p class="da-hero-kicker">Cucina con Enoteca · Casorezzo</p>
+				<h1>
+					<span class="da-line"><span class="word w1">Stasera</span> <span class="word w2">le regole</span></span>
+					<span class="da-line"><span class="word w3">non esistono</span></span>
+				</h1>
+				<p class="da-hero-lead">
+					Non siamo un bar, ma nemmeno un ristorante tradizionale. Siamo il vostro spazio: il tavolo che prenotate è vostro dalle 19 fino a chiusura. Nessun secondo turno, nessuna fretta.
+				</p>
+				<p class="da-hero-tagline"><span class="rule"></span> 17 tavoli · un'anima a sera</p>
+				<div class="da-hero-actions">
+					<a href="#contatti" class="da-btn-primary da-btn-3d"><i class="fa-solid fa-calendar-check"></i> Prenota un Tavolo</a>
+					<a href="#filosofia" class="da-btn-outline da-btn-3d"><i class="fa-solid fa-wand-magic-sparkles"></i> Come funziona</a>
+				</div>
+			</div>
+
+			{% include 'components/mascotte.html.twig' %}
+		</div>
+
+		<div class="da-scroll-cue"><i class="fa-solid fa-chevron-down"></i></div>
+	</header>
+
+	{# ============================ Chi siamo · Il locale ============================ #}
+	<section id="filosofia">
+		<div class="da-wrap">
+
+			{# titolo #}
+			<div data-reveal class="da-story-head">
+				<span class="da-eyebrow"><span class="rule"></span> Chi siamo</span>
+				<h2 class="da-h2">Non siamo un bar. <br>E nemmeno un ristorante.<br><em>Siamo il vostro spazio.</em></h2>
+			</div>
+
+			{# immagine col-6 + testo col-6 #}
+			<div id="momenti" class="da-story-cols">
+				<figure data-reveal class="da-story-figure">
+					<img src="{{ asset('images/graphics_2026_07_15/da-andrea.jpg') }}"
+					     alt="Andrea da bambino accanto al papà davanti al forno: l'infanzia e la prima passione"
+					     loading="lazy">
+					<figcaption><i class="fa-solid fa-fire"></i> La pizza di papà · L'infanzia · La prima passione</figcaption>
+				</figure>
+
+				<div data-reveal class="da-story-body">
+					<p>Il tavolo che prenotate è vostro dalle 19 fino a chiusura: nessun secondo turno, nessuna fretta. Venite al banco, ordinate quello che desiderate e ve lo portiamo noi — una bottiglia da gustare con calma, un tagliere da condividere o un piatto a testa. Decidete voi come costruire la serata.</p>
+					<p>Non dimentico mai da dove sono partito. Mio papà, mia mamma, il loro lavoro insieme; io che crescevo tra i tavoli e il forno. La pizza povera del sud, portata al nord dalle mani di un contadino salernitano diventato pizzaiolo. Oggi vi porto quei profumi e quei sapori — con le mie mani, con i miei ricordi.</p>
+				</div>
+			</div>
+
+			{# le cinque vite — timeline con i punti degli anni #}
+			<div data-reveal class="da-lives-block">
+				<div class="da-lives-intro">
+					<span class="da-lives-kicker">Cinque vite, un soprannome per ognuna</span>
+					<p>Ogni sera, uno di loro siede in cucina.</p>
+				</div>
+				<ol class="da-timeline">
+					{% for l in lives %}
+					<li class="da-tl-node{{ loop.last ? ' now' }}">
+						<span class="da-tl-dot"></span>
+						<span class="da-tl-name">{{ l.name }}</span>
+						<span class="da-tl-note">{{ l.note }}</span>
+					</li>
+					{% endfor %}
+				</ol>
+			</div>
+		</div>
+	</section>
+
+
+	{# ============================ Separatore: barra rossa tra Chi siamo e La carta ============================ #}
+	{% set marqueeItems = [] %}
+	{% for c in wineCategories %}{% set marqueeItems = marqueeItems|merge([c.name]) %}{% endfor %}
+	{% set marqueeItems = marqueeItems|merge(['Enoteca da Andrea', 'La bottiglia del giorno']) %}
+	<div class="da-marquee-band">
+		<div class="da-marquee" aria-hidden="true">
+			<div class="da-marquee-track">
+				{% for i in 1..2 %}
+					{% for m in marqueeItems %}
+					<span class="da-marquee-item">{{ m }}</span><span class="da-marquee-sep"><i class="fa-solid fa-wine-glass"></i></span>
+					{% endfor %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+	{# ============================ Menu ============================ #}
+	<section id="menu" class="da-section menu">
+		<img src="{{ asset('images/graphics_2026_07_15/icons/floating-grapes.svg') }}" alt="" aria-hidden="true" class="da-float da-float-grapes">
+		<img src="{{ asset('images/graphics_2026_07_15/icons/floating-glass.svg') }}" alt="" aria-hidden="true" class="da-float da-float-glass">
+		<div class="da-wrap narrow">
+			<div data-reveal class="da-menu-head">
+				<span class="da-eyebrow">La carta</span>
+				<h2 class="da-h2">Un assaggio di ciò che <em>vi aspetta</em></h2>
+				<p>La lista vini è appena nata: piccola, timida, un po' bozza… ma promette di crescere. Ogni sera, l'identità in cucina vi guiderà nella scelta della bottiglia perfetta.</p>
+			</div>
+
+			{% set categoryIcons = { rossi: 'fa-solid fa-wine-bottle', bianchi: 'fa-solid fa-wine-glass', bollicine: 'fa-solid fa-champagne-glasses' } %}
+
+			{# tabs #}
+			<div class="da-tabs-wrap">
+				<div class="da-tabs">
+					{% for c in wineCategories %}
+					<button class="da-tab{{ loop.first ? ' active' }}" data-tab="{{ c.slug }}">
+						<i class="{{ categoryIcons[c.slug]|default('fa-solid fa-wine-glass') }}"></i>{{ c.name }}
+					</button>
+					{% endfor %}
+				</div>
+			</div>
+
+			{% set wineMeta = {
+				rossi:     { tipo: 'Rosso',     bolla: 'Fermo', icon: 'fa-solid fa-wine-bottle',       cap: 'Nebbioli, sangiovese, cannonau e altri rossi da tutta Italia — da stappare con calma.' },
+				bianchi:   { tipo: 'Bianco',    bolla: 'Fermo', icon: 'fa-solid fa-wine-glass',        cap: 'Bianchi aromatici e minerali, freschi e slanciati per aprire la serata.' },
+				bollicine: { tipo: 'Bollicine', bolla: 'Mosso', icon: 'fa-solid fa-champagne-glasses', cap: 'Franciacorta, Trento e prosecco: perlage fine per il brindisi.' }
+			} %}
+
+			{# panels #}
+			{% for c in wineCategories %}
+			{% set meta = wineMeta[c.slug]|default({ tipo: c.name, bolla: 'Fermo', icon: 'fa-solid fa-wine-glass', cap: '' }) %}
+			<div class="da-menu-panel{{ loop.first ? ' active' }}" data-panel="{{ c.slug }}">
+				{% if meta.cap %}<p class="da-wine-cap"><i class="{{ meta.icon }}"></i> {{ meta.cap }}</p>{% endif %}
+				<div class="da-wine-grid">
+					{% for wine in c.wines|slice(0, 4) %}
+					<article class="da-wine-card">
+						<div class="da-wine-card-head">
+							<span class="da-wine-card-icon"><i class="{{ meta.icon }}"></i></span>
+							<div class="da-wine-card-title">
+								<h3 class="da-wine-card-name">{{ wine.displayName }}</h3>
+								{% if wine.year %}<p class="da-wine-card-year">Annata {{ wine.year }}</p>{% endif %}
+							</div>
+						</div>
+					</article>
+					{% endfor %}
+				</div>
+				<div class="da-menu-cta">
+					<a href="{{ asset('pdf/carta-' ~ c.slug ~ '.pdf') }}" class="da-btn-primary da-btn-3d" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Scarica la carta — {{ c.name }}</a>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</section>
+
+	{# ============================ Mappa ============================ #}
+	<section id="mappa" class="da-map-section" aria-label="Dove siamo">
+		<iframe
+			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d174.70721585110874!2d8.90028887712529!3d45.52385718900538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786f2f356815555%3A0x728e4259affd667f!2sVia%20Inveruno%2C%2030%2C%2020003%20Casorezzo%20MI!5e0!3m2!1sit!2sit!4v1784184893413!5m2!1sit!2sit"
+			title="Mappa Da Andrea — Via Inveruno 30, Casorezzo (MI)"
+			allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+	</section>
+
+	{# ============================ Prenota · Contatti ============================ #}
+	<section id="prenota" class="da-section contatti">
+		<div class="da-wrap">
+			<div class="da-contact">
+
+				{# intestazione #}
+				<div data-reveal class="da-contact-head">
+					<span class="da-eyebrow">Prenota</span>
+					<h2 class="da-h2">Il vostro tavolo <em>vi aspetta</em></h2>
+					<p class="da-contact-intro">Prenotate il vostro spazio: dalle 19 fino a chiusura, senza secondi turni. Vi confermiamo entro poche ore — per stasera, meglio una chiamata rapida.</p>
+				</div>
+
+				{# form #}
+				<div data-reveal class="da-form-col">
+					<div class="da-sent">
+						<div class="da-sent-icon"><i class="fa-solid fa-circle-check"></i></div>
+						<h3>Richiesta inviata!</h3>
+						<p>Grazie<span class="da-sent-name"></span>, vi ricontatteremo a breve per la conferma.</p>
+					</div>
+
+					<form class="da-form" action="{{ path('reservation_send') }}" method="post">
+						{# honeypot anti-spam: nascosto agli utenti, i bot lo compilano #}
+						<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+						<label class="da-field full">
+							<span>Nome e cognome</span>
+							<input required name="nome" placeholder="Mario Rossi" class="da-input">
+						</label>
+						<label class="da-field">
+							<span>Telefono</span>
+							<input required type="tel" name="telefono" placeholder="+39 ___ _______" class="da-input">
+						</label>
+						<label class="da-field">
+							<span>Coperti</span>
+							<input required type="number" name="coperti" min="1" placeholder="2" class="da-input wine">
+						</label>
+						<label class="da-field">
+							<span>Data</span>
+							<input required type="date" name="data" class="da-input">
+						</label>
+						<label class="da-field">
+							<span>Ora</span>
+							<input required type="time" name="ora" min="19:00" value="19:00" class="da-input wine">
+						</label>
+						<label class="da-field full">
+							<span>Note (allergie, occasioni speciali…)</span>
+							<textarea rows="3" name="note" placeholder="Tavolo tranquillo, un compleanno da festeggiare…" class="da-input"></textarea>
+						</label>
+						<button type="submit" class="da-submit da-btn-3d"><i class="fa-solid fa-paper-plane"></i> Invia la richiesta</button>
+					</form>
+				</div>
+
+				{# info #}
+				<div id="contatti" data-reveal class="da-info">
+					<div class="da-info-card">
+						<div class="da-info-row">
+							<span class="da-info-icon"><i class="fa-solid fa-location-dot"></i></span>
+							<div>
+								<div class="da-info-label">Dove</div>
+								<div class="da-info-val"><a href="https://www.google.com/maps/search/?api=1&query=Via+Inveruno+30+20003+Casorezzo+MI" target="_blank" rel="noopener">Via Inveruno 30, Casorezzo (MI) · 20003</a></div>
+							</div>
+						</div>
+						<div class="da-divider"></div>
+						<div class="da-info-row">
+							<span class="da-info-icon"><i class="fa-solid fa-envelope"></i></span>
+							<div>
+								<div class="da-info-label">Email</div>
+								<div class="da-info-val"><a href="mailto:cucina.da.andrea@gmail.com">cucina.da.andrea@gmail.com</a></div>
+							</div>
+						</div>
+						<div class="da-divider"></div>
+						<div class="da-info-row">
+							<span class="da-info-icon"><i class="fa-solid fa-phone"></i></span>
+							<div>
+								<div class="da-info-label">Telefono</div>
+								<div class="da-info-val"><a href="tel:+393518595639">351 859 5639</a></div>
+							</div>
+						</div>
+						<div class="da-divider"></div>
+						<div class="da-info-row">
+							<span class="da-info-icon"><i class="fa-solid fa-clock"></i></span>
+							<div>
+								<div class="da-info-label">Orari</div>
+								<div class="da-info-val">Mar–Dom dalle <strong>19.00</strong> a chiusura <br>Lunedì chiuso</div>
+							</div>
+						</div>
+						<div class="da-divider"></div>
+						<div class="da-info-actions">
+							<a href="tel:+393518595639" class="da-call"><i class="fa-solid fa-phone"></i> Chiama</a>
+							<a href="https://wa.me/393518595639" target="_blank" rel="noopener" class="da-wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	{# One-page: scroll to the section stored in session (redirect from homepage_with_section) #}
+	{% if section is defined and section %}
+	<script>
+		window.addEventListener('load', function () {
+			var el = document.getElementById({{ section|json_encode|raw }});
+			if (el) {
+				var top = el.getBoundingClientRect().top + window.pageYOffset - 50;
+				window.scrollTo({ top: top, behavior: 'smooth' });
+			}
+		});
+	</script>
+	{% endif %}
+
+{% endblock %}

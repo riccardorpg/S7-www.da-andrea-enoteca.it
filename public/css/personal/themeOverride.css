@@ -1,0 +1,46 @@
+/* TAG */
+b, a:hover { color: #D95D39 }
+
+/* ID */
+#copyrights { padding: 10px 0; }
+#footer .footer-widgets-wrap { padding: 40px 0; }
+#footer h4 { margin-bottom: 0px; font-size: 18px; color: white; }
+#footer p { color: white; font-size: 14px; margin-bottom: 2px }
+#footer a { color: white; font-size: 14px; margin-bottom: 2px }
+#header #logo, #header.transparent-header, #header.transparent-header:not(.sticky-header) #header-wrap { border: none }
+#header.full-header:not(.transparent-header) { border-bottom-color: white }
+#header .shape-divider { z-index: 100 }
+
+/* CLASS */
+.datepicker { z-index:300!important }
+.fbox-center .fbox-icon { margin-bottom: 0px; }
+.full-header .primary-menu .menu-container { border-right: 0px solid #EEE;}
+.fbox-content h3 { font-size: 1rem }
+.fbox-content p { color: #777; font-size: 16px}
+.i-bordered:hover { background-color: #D95D39 !important; border-color: #D95D39; }
+.is-expanded-menu .full-header .primary-menu .menu-container { padding-right: 0rem; margin-right: 0rem;  border-right: 0px; }
+.menu-item:hover > .menu-link, .menu-item.current > .menu-link { color: #D95D39; }
+.modal-content, .modal-header{ border-radius: 0px }
+.modal-content { border: none }
+.modal-header { border-bottom: 1px solid #D95D39; background: #D95D39 }
+.modal-header .modal-title { color: white; margin: auto }
+.modal-body { padding: 20px }
+.modal-footer { border-top: 1px solid #D95D39; display: flow-root; text-align: center }
+#activities_owl_carousel .owl-item { height: 450px }
+.page-title-center .breadcrumb { margin-top:10px }
+.radio-style:checked + .radio-style-2-label:before { background: #D95D39; }
+.team-title h4 { letter-spacing: 0px; }
+.style-msg { margin-bottom: 0px; }
+
+@media (min-width: 992px){
+	.primary-menu:not(.on-click) .menu-item:hover > .sub-menu-container, .primary-menu:not(.on-click) .menu-item:hover > .mega-menu-content{ margin-top: -5px }
+}
+@media (max-width: 991px){
+	.menu-container { margin-top: 30px }
+}
+@media (max-width: 767px){
+	#activities_owl_carousel .owl-item { height: 400px }
+}
+@media (min-width: 1300px){
+	#activities_owl_carousel .owl-item { height: 420px }
+}
