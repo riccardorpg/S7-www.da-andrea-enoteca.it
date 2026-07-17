@@ -6,7 +6,7 @@
  */
 
 $WINE_DIR = 'C:/laragon/www/www.da-andrea-enoteca.it/public/images/wine';
-$OUT_DIR  = 'C:/laragon/www/www.da-andrea-enoteca.it/public/pdf';
+$OUT_DIR  = 'C:/laragon/www/www.da-andrea-enoteca.it/public/documents';
 
 $VINI_ROSSI = [
     'A.A. Lagrein DOC 2024',

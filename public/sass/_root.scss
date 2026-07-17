@@ -1,3 +1,5 @@
+@use 'sass:meta';
+
 :root {
 	// Themecolor
 	--#{$cnvs-prefix}themecolor:  							#{$theme-color};
@@ -14,9 +16,9 @@
 	--#{$cnvs-prefix}headings-font-weight:         			600;
 
 	/* Font Families */
-	--#{$cnvs-prefix}body-font     :          				#{inspect($body-font)};
-	--#{$cnvs-prefix}primary-font  :          				#{inspect($primary-font)};
-	--#{$cnvs-prefix}secondary-font:          				#{inspect($secondary-font)};
+	--#{$cnvs-prefix}body-font     :          				#{meta.inspect($body-font)};
+	--#{$cnvs-prefix}primary-font  :          				#{meta.inspect($primary-font)};
+	--#{$cnvs-prefix}secondary-font:          				#{meta.inspect($secondary-font)};
 
 	--#{$cnvs-prefix}line-height-base   :          		#{$line-height-base};
 	--#{$cnvs-prefix}line-height-content:          		#{$line-height-content};
@@ -41,7 +43,7 @@
 
 	/* Header Height */
 	--#{$cnvs-prefix}header-height: 						#{$header-height};
-	@if variable-exists(header-sizes) {
+	@if meta.variable-exists(header-sizes) {
 		@each $size, $value in $header-sizes {
 			--#{$cnvs-prefix}header-height-#{$size}: 		#{$value};
 		}
@@ -60,7 +62,7 @@
 	--#{$cnvs-prefix}transitions:							#{$transitions};
 
 	/* Social Colors */
-	@if variable-exists(si-colors) {
+	@if meta.variable-exists(si-colors) {
 		@each $name, $hex in $si-colors {
 			--#{$cnvs-prefix}color-#{$name}:				#{$hex};
 			--#{$cnvs-prefix}color-#{$name}-rgb:			#{to-rgb($hex)};

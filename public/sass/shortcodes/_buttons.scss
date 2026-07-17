@@ -8,6 +8,8 @@
 	Buttons
 -----------------------------------------------------------------*/
 
+@use 'sass:math';
+
 $btn-prefix: button;
 
 .#{$btn-prefix} {
@@ -234,10 +236,10 @@ $btn-prefix: button;
 				right: -($button-reveal-mini-icon);
 			}
 			&:hover span {
-				left: round($button-reveal-mini-icon * 0.5);
+				left: math.round($button-reveal-mini-icon * 0.5);
 			}
 			&.text-end:hover span {
-				left: -1 * round($button-reveal-mini-icon * 0.5);
+				left: -1 * math.round($button-reveal-mini-icon * 0.5);
 			}
 		}
 
@@ -253,10 +255,10 @@ $btn-prefix: button;
 				right: -$button-reveal-small-icon;
 			}
 			&:hover span {
-				left: round($button-reveal-small-icon * 0.5);
+				left: math.round($button-reveal-small-icon * 0.5);
 			}
 			&.text-end:hover span {
-				left: -1 * round($button-reveal-small-icon * 0.5);
+				left: -1 * math.round($button-reveal-small-icon * 0.5);
 			}
 		}
 
@@ -272,10 +274,10 @@ $btn-prefix: button;
 				right: -($button-reveal-lg-icon);
 			}
 			&:hover span {
-				left: round($button-reveal-lg-icon * 0.5);
+				left: math.round($button-reveal-lg-icon * 0.5);
 			}
 			&.text-end:hover span {
-				left: -1 * round($button-reveal-lg-icon * 0.5);
+				left: -1 * math.round($button-reveal-lg-icon * 0.5);
 			}
 		}
 
@@ -291,10 +293,10 @@ $btn-prefix: button;
 				right: -($button-reveal-xl-icon);
 			}
 			&:hover span {
-				left: round($button-reveal-xl-icon * 0.5);
+				left: math.round($button-reveal-xl-icon * 0.5);
 			}
 			&.text-end:hover span {
-				left: -1 * round($button-reveal-xl-icon * 0.5);
+				left: -1 * math.round($button-reveal-xl-icon * 0.5);
 			}
 		}
 
@@ -306,10 +308,10 @@ $btn-prefix: button;
 			right: 0;
 		}
 		&:hover span {
-			left: round($button-reveal-icon * 0.5);
+			left: math.round($button-reveal-icon * 0.5);
 		}
 		&.text-end:hover span {
-			left: -1 * round($button-reveal-icon * 0.5);
+			left: -1 * math.round($button-reveal-icon * 0.5);
 		}
 
 		&.#{$btn-prefix}-light:hover {
@@ -348,12 +350,12 @@ $btn-prefix: button;
 				border-bottom-color: var(--#{$cnvs-prefix}btn-color-dark);
 			}
 			&:hover strong {
-				border-bottom-color: rgba(var(--#{$cnvs-prefix}contrast-rgb),.2);
+				border-bottom-color: rgba(var(--#{$cnvs-prefix}invert-contrast-rgb),.2);
 			}
 		}
 		strong {
 			font-weight: 700;
-			border-bottom: 2px solid rgba(var(--#{$cnvs-prefix}contrast-rgb),.2);
+			border-bottom: 2px solid rgba(var(--#{$cnvs-prefix}invert-contrast-rgb),.2);
 			@include transition(all $button-transition-speed);
 		}
 	}

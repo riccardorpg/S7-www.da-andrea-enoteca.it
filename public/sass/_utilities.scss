@@ -8,6 +8,9 @@
 	Helper Classes
 -----------------------------------------------------------------*/
 
+@use 'sass:map';
+@use 'sass:meta';
+
 .line,
 .double-line {
 	clear: both;
@@ -145,7 +148,7 @@ span.middot {
 /* ----------------------------------------------------------------
 	Letter Spacing Utility Classes
 -----------------------------------------------------------------*/
-@if variable-exists(letter-spacing) {
+@if meta.variable-exists(letter-spacing) {
 	@for $l-spacing-element from 0 through $letter-spacing {
 		.ls-#{$l-spacing-element} {
 			letter-spacing: 1px * $l-spacing-element !important;
@@ -184,15 +187,15 @@ span.middot {
 -----------------------------------------------------------------*/
 
 .font-body {
-	font-family: #{inspect(var(--#{$cnvs-prefix}body-font))} !important;
+	font-family: #{meta.inspect(var(--#{$cnvs-prefix}body-font))} !important;
 }
 
 .font-primary {
-	font-family: #{inspect(var(--#{$cnvs-prefix}primary-font))} !important;
+	font-family: #{meta.inspect(var(--#{$cnvs-prefix}primary-font))} !important;
 }
 
 .font-secondary {
-	font-family: #{inspect(var(--#{$cnvs-prefix}secondary-font))} !important;
+	font-family: #{meta.inspect(var(--#{$cnvs-prefix}secondary-font))} !important;
 }
 
 .bg-icon {
@@ -208,7 +211,7 @@ span.middot {
 /* ----------------------------------------------------------------
 	Text Underline Offset
 -----------------------------------------------------------------*/
-@if variable-exists(text-underline-offset) {
+@if meta.variable-exists(text-underline-offset) {
 	@for $text-underline-offset-element from 0 through $text-underline-offset {
 		.text-underline-offset-#{$text-underline-offset-element} {
 			text-underline-offset: #{$text-underline-offset-element}px !important;
@@ -223,7 +226,7 @@ span.middot {
 /* ----------------------------------------------------------------
 	Image fit Objects
 -----------------------------------------------------------------*/
-@if variable-exists(objects) {
+@if meta.variable-exists(objects) {
 	@each $object in $objects {
 		.object-#{$object} {
 			object-fit: #{$object} !important;
@@ -234,12 +237,12 @@ span.middot {
 /* ----------------------------------------------------------------
 	Image Object & Background Positions
 -----------------------------------------------------------------*/
-@if variable-exists(objects-postion) {
+@if meta.variable-exists(objects-postion) {
 	@each $name, $value in $objects-postion {
 		.object-#{$name} {
 			object-position: #{$value} !important;
 		}
-		@each $breakpoint in map-keys($grid-breakpoints) {
+		@each $breakpoint in map.keys($grid-breakpoints) {
 			@include media-breakpoint-up($breakpoint) {
 				$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 				.bg#{$infix}-#{$name} {
@@ -253,7 +256,7 @@ span.middot {
 /* ----------------------------------------------------------------
 	Background Sizes
 -----------------------------------------------------------------*/
-@if variable-exists(background-sizes) {
+@if meta.variable-exists(background-sizes) {
 	@each $size in $background-sizes {
 		.bg-#{$size} {
 			background-size: #{$size} !important;
@@ -357,7 +360,7 @@ span.middot {
 	Opacity Utility Classes
 -----------------------------------------------------------------*/
 @mixin opacity($op) {
-	@if variable-exists(op-classes) {
+	@if meta.variable-exists(op-classes) {
 		@for $op-element from 1 through $op {
 			.op-0#{$op-element},
 			.h-op-0#{$op-element}:hover {
@@ -366,7 +369,7 @@ span.middot {
 		}
 	}
 }
-@if variable-exists(op-classes) {
+@if meta.variable-exists(op-classes) {
 	.op-ts {
 		@include transition(opacity var(--#{$cnvs-prefix}transitions));
 	}
@@ -428,7 +431,7 @@ a.h-text-color:hover {
 	background-color: transparent !important;
 }
 
-@if variable-exists(theme-colors) {
+@if meta.variable-exists(theme-colors) {
 	@each $name, $hex in $theme-colors {
 		.h-text-#{$name}:hover,
 		a.h-text-#{$name}:hover {
@@ -460,7 +463,7 @@ a.h-text-color:hover {
 	Gradient Utility Classes
 -----------------------------------------------------------------*/
 
-@if variable-exists(gradients-classes) {
+@if meta.variable-exists(gradients-classes) {
 	@each $key, $value in $gradient-colors {
 		@at-root .gradient-#{$key},
 			.h-gradient-#{$key}:hover {
@@ -487,7 +490,7 @@ a.h-text-color:hover {
 /* ----------------------------------------------------------------
 	Bootstrap Utility Classes Extended
 -----------------------------------------------------------------*/
-@if variable-exists(gutter-classes) {
+@if meta.variable-exists(gutter-classes) {
 	/*	Gutters */
 	[class*="gutter-"] {
 		--#{$cnvs-prefix}custom-gutter: var(--#{$prefix}gutter-x);
@@ -502,7 +505,7 @@ a.h-text-color:hover {
 		padding-left: calc(var(--#{$cnvs-prefix}custom-gutter) * 0.5);
 		margin-top: var(--#{$cnvs-prefix}custom-gutter);
 	}
-	@each $breakpoint in map-keys($grid-breakpoints) {
+	@each $breakpoint in map.keys($grid-breakpoints) {
 		@include media-breakpoint-up($breakpoint) {
 			$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 			@for $gutter-element from 1 through $gutter-classes {
@@ -519,7 +522,7 @@ a.h-text-color:hover {
 /* ----------------------------------------------------------------
 	col-mb-classes & Bootstrap Utility Classes Extended
 -----------------------------------------------------------------*/
-@if variable-exists(col-mb-classes) {
+@if meta.variable-exists(col-mb-classes) {
 	[class*="col-mb-"] {
 		margin-bottom: calc(var(--#{$cnvs-prefix}col-mb) * -1);
 	}
@@ -528,7 +531,7 @@ a.h-text-color:hover {
 	[class*="col-mb-"] > [class*="col-"] {
 		padding-bottom: var(--#{$cnvs-prefix}col-mb);
 	}
-	@each $breakpoint in map-keys($grid-breakpoints) {
+	@each $breakpoint in map.keys($grid-breakpoints) {
 		@include media-breakpoint-up($breakpoint) {
 			$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 			@each $value in $col-mb-classes {
@@ -543,8 +546,8 @@ a.h-text-color:hover {
 /* ----------------------------------------------------------------
 	Height Utility Classes
 -----------------------------------------------------------------*/
-@if variable-exists(vh-elements) {
-	@each $breakpoint in map-keys($grid-breakpoints) {
+@if meta.variable-exists(vh-elements) {
+	@each $breakpoint in map.keys($grid-breakpoints) {
 		@include media-breakpoint-up($breakpoint) {
 			$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
@@ -577,8 +580,8 @@ a.h-text-color:hover {
 /* ----------------------------------------------------------------
 	Position Utility Classes Extended
 -----------------------------------------------------------------*/
-@if variable-exists(positions) {
-	@each $breakpoint in map-keys($grid-breakpoints) {
+@if meta.variable-exists(positions) {
+	@each $breakpoint in map.keys($grid-breakpoints) {
 		@include media-breakpoint-up($breakpoint) {
 			$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 			@each $pos in $positions {
@@ -625,11 +628,11 @@ a.h-text-color:hover {
 		}
 	}
 }
-@if variable-exists(cnvs-border-width) {
+@if meta.variable-exists(cnvs-border-width) {
 	@include border-width($cnvs-border-width);
 }
 
-@if variable-exists(border-styles) {
+@if meta.variable-exists(border-styles) {
 	@each $styles in $border-styles {
 		.border-#{$styles} {
 			border-style: #{$styles} !important;
@@ -687,7 +690,7 @@ a.h-text-color:hover {
 /* ----------------------------------------------------------------
 	Max-width Utility Classes
 -----------------------------------------------------------------*/
-@if variable-exists(max-widths) {
+@if meta.variable-exists(max-widths) {
 	@each $name, $widths in $max-widths {
 		.mw-#{$name} {
 			max-width: #{$widths} !important;
@@ -698,7 +701,7 @@ a.h-text-color:hover {
 /* ----------------------------------------------------------------
 	Text Sizes Utility Classes
 -----------------------------------------------------------------*/
-@if variable-exists(text-sizes) {
+@if meta.variable-exists(text-sizes) {
 	@each $name, $size in $text-sizes {
 		.text-size-#{$name} {
 			font-size: #{$size} !important;
@@ -755,7 +758,7 @@ a.h-text-color:hover {
 /* ----------------------------------------------------------------
 	Square Sizes Utility Classes
 -----------------------------------------------------------------*/
-@if variable-exists(square-sizes) {
+@if meta.variable-exists(square-sizes) {
 	.square {
 		--#{$cnvs-prefix}square-size: 3rem;
 		width: var(--#{$cnvs-prefix}square-size) !important;
@@ -805,40 +808,40 @@ a.h-text-color:hover {
 .align-wide-lg {
 	margin-left: subtract(
 		50%,
-		(map-get($container-max-widths, "lg") * 0.5)
+		(map.get($container-max-widths, "lg") * 0.5)
 	) !important;
 	margin-right: subtract(
 		50%,
-		(map-get($container-max-widths, "lg") * 0.5)
+		(map.get($container-max-widths, "lg") * 0.5)
 	) !important;
-	max-width: map-get($container-max-widths, "lg") !important;
-	width: map-get($container-max-widths, "lg") !important;
+	max-width: map.get($container-max-widths, "lg") !important;
+	width: map.get($container-max-widths, "lg") !important;
 }
 
 .align-wide-xl {
 	margin-left: subtract(
 		50%,
-		(map-get($container-max-widths, "xl") * 0.5)
+		(map.get($container-max-widths, "xl") * 0.5)
 	) !important;
 	margin-right: subtract(
 		50%,
-		(map-get($container-max-widths, "xl") * 0.5)
+		(map.get($container-max-widths, "xl") * 0.5)
 	) !important;
-	max-width: map-get($container-max-widths, "xl") !important;
-	width: map-get($container-max-widths, "xl") !important;
+	max-width: map.get($container-max-widths, "xl") !important;
+	width: map.get($container-max-widths, "xl") !important;
 }
 
 .align-wide-xxl {
 	margin-left: subtract(
 		50%,
-		(map-get($container-max-widths, "xxl") * 0.5)
+		(map.get($container-max-widths, "xxl") * 0.5)
 	) !important;
 	margin-right: subtract(
 		50%,
-		(map-get($container-max-widths, "xxl") * 0.5)
+		(map.get($container-max-widths, "xxl") * 0.5)
 	) !important;
-	max-width: map-get($container-max-widths, "xxl") !important;
-	width: map-get($container-max-widths, "xxl") !important;
+	max-width: map.get($container-max-widths, "xxl") !important;
+	width: map.get($container-max-widths, "xxl") !important;
 }
 
 @include media-breakpoint-down(sm) {

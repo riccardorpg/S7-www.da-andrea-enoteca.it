@@ -1,3 +1,6 @@
+@use 'sass:map';
+@use 'sass:math';
+
 @import "bootstrap/_functions";
 @import "bootstrap/_variables";
 @import "bootstrap/_mixins";
@@ -218,7 +221,7 @@ $grid-row-columns  :			6 !default;
 $spacer  :			1rem !default;
 $spacers :			() !default;
 // stylelint-disable-next-line scss/dollar-variable-default
-$spacers: map-merge(
+$spacers: map.merge(
 	(
 		0 :	0,
 		1 :	(
@@ -244,7 +247,7 @@ $spacers: map-merge(
 
 //-------------------- Text Opacity --------------------//
 $utilities: ();
-$utilities: map-merge($utilities,
+$utilities: map.merge($utilities,
 	( "extende-bg-opacity": (
 		css-var: true,
 		class: bg-opacity,
@@ -781,9 +784,9 @@ $counter-font-weight  :          700;
 $counter-font-family  :          var(--#{$cnvs-prefix}primary-font);
 $counter-caption-size :          0.9325rem;
 
-$counter-sm-font-size :          round($counter-font-size * 0.6666666667);
-$counter-lg-font-size :          round($counter-font-size * 1.33);
-$counter-xl-font-size :          round($counter-font-size * 1.52);
+$counter-sm-font-size :          math.round($counter-font-size * 0.6666666667);
+$counter-lg-font-size :          math.round($counter-font-size * 1.33);
+$counter-xl-font-size :          math.round($counter-font-size * 1.52);
 $counter-lined-size   :          2px solid var(--#{$cnvs-prefix}heading-color);
 $counter-lined-width  :          15%;
 
@@ -912,7 +915,7 @@ $divider-width          :          100%;
 $divider-short-width-sm :          55%;
 $divider-short-width-xs :          35%;
 
-$divider-rounded-size       :          round($divider-icon-size * 2.22);
+$divider-rounded-size       :          math.round($divider-icon-size * 2.22);
 $divider-rounded-color      :          var(--#{$cnvs-prefix}contrast-600);
 $divider-rounded-background :          var(--#{$cnvs-prefix}contrast-200);
 

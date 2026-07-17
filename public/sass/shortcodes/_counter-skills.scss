@@ -3,6 +3,8 @@
 	Shortcodes: counter-skills.scss
 
 -----------------------------------------------------------------------------------*/
+@use 'sass:map';
+
 $counter-prefix: counter;
 $rounded-prefix: rounded-skill;
 $skills-prefix: skill;
@@ -15,7 +17,7 @@ $skills-prefix: skill;
 	--#{$cnvs-prefix}counter-font-size: #{$counter-font-size};
 	--#{$cnvs-prefix}counter-font-weight: #{$counter-font-weight};
 	--#{$cnvs-prefix}counter-font-family: var(--#{$cnvs-prefix}primary-font);
-	--#{$cnvs-prefix}counter-caption-size: #{map-get($cnvs-font-sizes, "h5")};
+	--#{$cnvs-prefix}counter-caption-size: #{map.get($cnvs-font-sizes, "h5")};
 
 	--#{$cnvs-prefix}counter-sm-font-size: #{$counter-sm-font-size};
 	--#{$cnvs-prefix}counter-lg-font-size: #{$counter-lg-font-size};

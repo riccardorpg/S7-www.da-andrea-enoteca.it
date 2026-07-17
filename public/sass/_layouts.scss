@@ -8,6 +8,8 @@
 	Bootstrap Adjustments
 -----------------------------------------------------------------*/
 
+@use 'sass:map';
+
 @media (prefers-reduced-motion: no-preference) {
 	:root {
 		scroll-behavior: auto;
@@ -45,7 +47,7 @@
 }
 
 /*	Custom Bootstap Columns */
-@each $breakpoint in map-keys($grid-breakpoints) {
+@each $breakpoint in map.keys($grid-breakpoints) {
 	@include media-breakpoint-up($breakpoint) {
 		$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 		.col#{$infix}-1-5 {
@@ -64,10 +66,10 @@
 	box-shadow: 0 0 10px rgba($black, 0.1);
 	body:not(.stretched) & {
 		@include media-breakpoint-up(xl) {
-			max-width: map-get($grid-breakpoints, "xl");
+			max-width: map.get($grid-breakpoints, "xl");
 		}
 		@include media-breakpoint-up(xxl) {
-			max-width: map-get($grid-breakpoints, "xxl");
+			max-width: map.get($grid-breakpoints, "xxl");
 		}
 	}
 	.stretched & {
