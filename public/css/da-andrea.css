@@ -98,7 +98,10 @@ a:hover { color: var(--cream); }
 .da-drawer.open { display: flex; opacity: 1; transform: translateY(0); pointer-events: auto; }
 .da-drawer a { color: var(--cream); font-size: 20px; font-family: var(--font-display); font-weight: 700; }
 .da-drawer a:hover { color: var(--ember); }
-.da-drawer .da-cta { justify-content: center; margin-top: 8px; font-size: 15px; padding: 14px 28px; }
+
+/* CTA "Prenota" fuori dall'hamburger, visibile solo su mobile */
+.da-nav-mobile { display: none; align-items: center; gap: 12px; }
+.da-mobile-cta { padding: 10px 18px; font-size: 13px; margin-right: 7px; }
 
 /* ============================ Buttons (shared) ============================ */
 .da-btn-primary {
@@ -128,7 +131,7 @@ a:hover { color: var(--cream); }
 .da-hero-inner { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; width: 100%; }
 .da-hero-kicker { font-family: var(--font-display); font-style: italic; font-size: clamp(16px, 2.4vw, 22px); color: var(--ember); margin: 0 0 18px; opacity: 0; animation: fadeIn 1s ease .2s forwards; letter-spacing: .4px; }
 .da-hero h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 5vw, 60px); line-height: 1.05; margin: 0; letter-spacing: -1px; max-width: none; color: var(--cream); }
-.da-hero h1 .da-line { display: block; overflow: hidden; width: auto; margin: 0; border: 0; }
+.da-hero h1 .da-line { display: block; overflow: hidden; width: auto; margin: 0 0 -.14em; padding-bottom: .14em; border: 0; }
 .da-hero h1 .word { display: inline-block; animation: fadeUpWord .9s cubic-bezier(.2, .7, .2, 1) both; }
 .da-hero h1 .word.w1 { animation-delay: .25s; }
 .da-hero h1 .word.w2 { animation-delay: .40s; }
@@ -142,10 +145,10 @@ a:hover { color: var(--cream); }
 /* ============================ Sections (shared) ============================ */
 .da-section { position: relative; padding: 110px 24px; }
 .da-section.ink   { background: var(--ink); }
-.da-section.menu  { background: linear-gradient(180deg, var(--ink), #EEE6D7); }
+.da-section.menu  { background: linear-gradient(180deg, var(--ink), #EEE6D7); overflow: hidden; }
 .da-section.contatti { background: linear-gradient(180deg, #EEE6D7, rgba(92, 29, 36, .06)); }
 .da-wrap { max-width: 1180px; margin: 0 auto; }
-#filosofia { margin: clamp(60px, 8vw, 110px) 0; }
+#filosofia { margin: clamp(60px, 8vw, 110px) 0; padding: 0 24px; }
 .da-wrap.narrow { max-width: 1100px; }
 .da-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--ember); font-weight: 500; }
 .da-eyebrow .rule { width: 26px; height: 1px; background: var(--ember); display: inline-block; }
@@ -185,6 +188,7 @@ a:hover { color: var(--cream); }
 .da-tab[data-tab="rossi"].active     { background: var(--wine-2); }
 .da-tab[data-tab="bianchi"].active   { background: var(--amber); color: #1a0f0a; }
 .da-tab[data-tab="bollicine"].active { background: var(--ember); }
+.da-tab[data-tab="stuzzichini"].active { background: var(--wine-2); }
 
 .da-menu-panel { display: none; animation: tabFade .5s cubic-bezier(.2, .7, .2, 1) both; }
 .da-menu-panel.active { display: block; }
@@ -218,7 +222,7 @@ a:hover { color: var(--cream); }
 /* Wine cards — grid of bottles with descriptor chips */
 .da-wine-cap { max-width: 1080px; margin: 0 auto 26px; text-align: center; font-family: var(--font-display); font-style: italic; font-size: clamp(15px, 1.9vw, 18px); line-height: 1.5; color: var(--muted); display: flex; align-items: center; justify-content: center; gap: 10px; }
 .da-wine-cap i { color: var(--ember-2); font-size: 15px; }
-.da-wine-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 18px; max-width: 1080px; margin: 0 auto; }
+.da-wine-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; max-width: 1080px; margin: 0 auto; }
 .da-wine-card { background: var(--ink-2); border: 1px solid var(--line); border-radius: 16px; padding: 26px 30px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 12px 34px rgba(24, 22, 21, .06); transition: border-color .35s ease, transform .35s ease; }
 .da-wine-card:hover { border-color: rgba(217, 93, 57, .4); transform: translateY(-3px); }
 .da-wine-card-head { display: flex; align-items: flex-start; gap: 14px; }
@@ -231,12 +235,21 @@ a:hover { color: var(--cream); }
 .da-wine-chip.type { background: rgba(92, 29, 36, .08); border-color: transparent; color: var(--wine); }
 .da-wine-chip.mosso { background: rgba(217, 93, 57, .12); border-color: transparent; color: var(--ember-2); }
 .da-wine-chip.denom { border-color: rgba(217, 93, 57, .4); color: var(--ember-2); }
+/* Anteprima stuzzichini: teaser voci dentro la card di sezione */
+.da-stuzzi-list { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.da-stuzzi-list li { position: relative; padding-left: 16px; font-size: 13.5px; line-height: 1.4; color: var(--cream); font-weight: 400; }
+.da-stuzzi-list li::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: rgba(92, 29, 36, .4); }
+.da-stuzzi-list li.more { color: var(--ember-2); font-weight: 600; font-size: 12.5px; }
+.da-stuzzi-list li.more::before { background: none; }
 @media (max-width: 575.98px) { .da-wine-grid { grid-template-columns: 1fr; } }
 
 /* Floating decorations (grapes & glass) — adapted from the Canvas "Wine" demo */
 .da-float { position: absolute; z-index: 0; pointer-events: none; opacity: .18; }
 .da-float-grapes { top: 40px; left: -60px; width: 230px; animation: daFloat 7s ease-in-out infinite; }
 .da-float-glass { bottom: 20px; right: -70px; width: 200px; animation: daFloat 8s ease-in-out infinite reverse; }
+.da-float-leaf { bottom: 60px; left: -40px; width: 150px; animation: daFloat 9s ease-in-out infinite; }
+.da-float-tappe { top: 70px; right: -30px; width: 150px; animation: daFloat 8s ease-in-out infinite; }
+.da-float-prenota { bottom: 40px; left: -30px; width: 140px; animation: daFloat 9s ease-in-out infinite reverse; }
 #menu .da-wrap { position: relative; z-index: 1; }
 @keyframes daFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
 @media (prefers-reduced-motion: reduce) { .da-float { animation: none; } }
@@ -282,22 +295,41 @@ a:hover { color: var(--cream); }
 .da-lives-kicker { display: block; font-family: var(--font-display); font-style: italic; font-size: clamp(21px, 2.6vw, 30px); line-height: 1.2; color: var(--wine); }
 .da-lives-intro p { margin: 10px 0 0; color: var(--ember); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
 .da-timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 22px; position: relative; }
-.da-timeline::before { content: ''; position: absolute; top: 7px; left: 10%; right: 10%; height: 2px; background: var(--line); }
-.da-tl-node { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 30px; }
-.da-tl-dot { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 16px; height: 16px; border-radius: 50%; background: var(--ink); border: 2px solid var(--wine); }
+.da-timeline::before { content: ''; position: absolute; top: 22px; left: 10%; right: 10%; height: 2px; background: var(--line); }
+.da-tl-node { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 58px; }
+.da-tl-dot { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 44px; height: 44px; border-radius: 50%; background: var(--ink); border: 2px solid var(--wine); display: flex; align-items: center; justify-content: center; font-size: 17px; color: var(--wine); }
 .da-tl-name { font-family: var(--font-display); font-weight: 700; font-size: clamp(16px, 1.8vw, 19px); letter-spacing: .5px; color: var(--cream); }
 .da-tl-note { margin-top: 7px; color: var(--muted); font-size: 13px; line-height: 1.45; font-weight: 300; }
-.da-tl-node.now .da-tl-dot { background: var(--ember); border-color: var(--ember); box-shadow: 0 0 0 5px rgba(217, 93, 57, .18); }
+.da-tl-node.now .da-tl-dot { background: var(--ember); border-color: var(--ember); color: #fff; box-shadow: 0 0 0 5px rgba(217, 93, 57, .18); }
 .da-tl-node.now .da-tl-name { color: var(--ember); }
+.da-tl-period { margin-top: 4px; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; color: var(--ember); }
+.da-tl-node.now .da-tl-period { color: var(--wine); }
+/* lead sotto il kicker delle cinque vite (override della regola generica .da-lives-intro p) */
+.da-lives-intro .da-lives-lead { margin: 14px auto 0; max-width: 60ch; color: var(--muted); font-size: clamp(15px, 1.7vw, 17px); line-height: 1.7; font-weight: 300; letter-spacing: 0; text-transform: none; }
+/* citazione autodidatta */
+.da-lives-quote { position: relative; margin: 52px auto 0; max-width: 720px; text-align: center; padding: 0 20px; }
+.da-lives-quote i { color: rgba(92, 29, 36, .22); font-size: 30px; }
+.da-lives-quote p { margin: 14px 0 0; font-family: var(--font-display); font-style: italic; font-size: clamp(18px, 2.4vw, 26px); line-height: 1.4; color: var(--wine); }
 
 @media (max-width: 991.98px) {
 	.da-story-cols { grid-template-columns: 1fr; gap: 34px; margin-bottom: 64px; }
 }
+/* md + sm + xs — card impilate una sotto l'altra */
 @media (max-width: 767.98px) {
-	.da-timeline { grid-template-columns: repeat(2, 1fr); gap: 28px 18px; }
+	.da-timeline { grid-template-columns: 1fr; gap: 14px; }
 	.da-timeline::before { display: none; }
-	.da-tl-node { align-items: flex-start; text-align: left; padding: 0 0 0 26px; }
-	.da-tl-dot { top: 4px; left: 0; transform: none; }
+	.da-tl-node {
+		align-items: flex-start; text-align: left;
+		padding: 22px 22px 22px 80px;
+		background: var(--ink-2); border: 1px solid var(--line); border-radius: 16px;
+		box-shadow: 0 8px 24px rgba(24, 22, 21, .05);
+		transition: border-color .35s ease, transform .35s ease;
+	}
+	.da-tl-dot { top: 20px; left: 22px; transform: none; width: 42px; height: 42px; font-size: 16px; }
+	.da-tl-name { font-size: 19px; }
+	.da-tl-note { margin-top: 6px; font-size: 14px; }
+	.da-tl-node.now { border-color: rgba(217, 93, 57, .35); background: rgba(217, 93, 57, .05); }
+	.da-lives-intro { margin-bottom: 32px; }
 }
 
 /* la frase — sezione dedicata */
@@ -305,6 +337,30 @@ a:hover { color: var(--cream); }
 .da-phrase-quote { position: relative; margin: 0 auto; max-width: 24ch; padding-top: 40px; text-align: center; font-family: var(--font-display); font-style: italic; font-size: clamp(24px, 4vw, 42px); line-height: 1.28; color: var(--wine); }
 .da-phrase-quote::before { content: '\201C'; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); font-size: 96px; line-height: 1; color: rgba(92, 29, 36, .16); font-family: var(--font-display); }
 .da-phrase-sign { display: block; margin-top: 26px; font-family: var(--font-sans); font-style: normal; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--ember); }
+
+/* ============================ Cinque modi di dire casa · la settimana ============================ */
+.da-section.week { background: linear-gradient(180deg, #F9F6F0, #F3EEE4); }
+.da-week-head { text-align: center; max-width: 680px; margin: 0 auto 50px; }
+.da-week-head .da-eyebrow { justify-content: center; }
+.da-week-head .da-h2 { margin: 16px 0 12px; }
+.da-week-head p { color: var(--muted); font-size: 16px; line-height: 1.6; margin: 0; font-weight: 300; }
+.da-week-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; align-items: stretch; }
+.da-week-card { position: relative; flex: 1 1 300px; max-width: 360px; display: flex; flex-direction: column; gap: 14px; background: var(--ink-2); border: 1px solid var(--line); border-radius: 18px; padding: 30px 26px 26px; box-shadow: 0 12px 34px rgba(24, 22, 21, .06); transition: border-color .35s ease, transform .35s ease; }
+.da-week-num { position: absolute; top: 14px; right: 20px; font-family: var(--font-display); font-weight: 800; font-size: 46px; line-height: 1; color: rgba(120, 100, 70, .12); pointer-events: none; }
+.da-week-card.now .da-week-num { color: rgba(217, 93, 57, .20); }
+.da-week-bio { margin: 0; color: var(--cream); font-size: 13.5px; line-height: 1.55; font-weight: 400; }
+.da-week-card:hover { border-color: rgba(217, 93, 57, .4); transform: translateY(-4px); }
+.da-week-card-top { display: flex; align-items: center; gap: 14px; }
+.da-week-icon { flex: none; width: 46px; height: 46px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 19px; color: var(--wine); background: rgba(92, 29, 36, .08); }
+.da-week-when { display: flex; flex-direction: column; gap: 2px; }
+.da-week-day { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.da-week-name { font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: .5px; color: var(--cream); }
+.da-week-title { margin: 0; font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 16px; line-height: 1.35; color: var(--wine); }
+.da-week-text { margin: 0; color: var(--muted); font-size: 13.5px; line-height: 1.6; font-weight: 300; }
+.da-week-card.now { border-color: rgba(217, 93, 57, .45); background: rgba(217, 93, 57, .05); }
+.da-week-card.now .da-week-icon { background: var(--ember); color: #fff; box-shadow: 0 8px 20px rgba(217, 93, 57, .3); }
+.da-week-card.now .da-week-name { color: var(--ember); }
+@media (max-width: 575.98px) { .da-week-card { flex-basis: 100%; max-width: 420px; } }
 
 /* ============================ Momenti / Bento ============================ */
 .da-momenti-head { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 20px; margin-bottom: 44px; }
@@ -323,8 +379,8 @@ a:hover { color: var(--cream); }
 .da-bento-cap i { color: var(--ember); font-size: 11px; }
 
 /* ============================ Contatti ============================ */
-.da-contact { display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; align-items: start; grid-template-areas: "head ." "form info"; }
-.da-contact-head { grid-area: head; }
+.da-contact { display: grid; grid-template-columns: 1fr; gap: 0; align-items: start; grid-template-areas: "head" "form"; max-width: 720px; margin: 0 auto; }
+.da-contact-head { grid-area: head; text-align: center; }
 .da-form-col { grid-area: form; }
 .da-contact .da-info { grid-area: info; }
 .da-contact .da-h2 { margin: 16px 0 10px; font-size: clamp(30px, 4.2vw, 48px); }
@@ -345,9 +401,19 @@ textarea.da-input { resize: vertical; }
 .da-sent h3 { font-family: var(--font-display); font-size: 24px; margin: 0 0 8px; }
 .da-sent p { color: var(--muted); margin: 0; font-size: 15px; font-weight: 300; }
 
+#whatsappBtn { position: fixed; bottom: 10px; left: 10px; width: 45px; height: 45px; z-index: 10000; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #25D366; color: #fff; font-size: 24px; box-shadow: 0 4px 14px rgba(0,0,0,.25); transition: transform .25s ease, box-shadow .25s ease; }
+#whatsappBtn:hover { transform: scale(1.08); box-shadow: 0 6px 20px rgba(0,0,0,.35); }
+
 .da-info { display: flex; flex-direction: column; gap: 18px; }
-.da-map-section { position: relative; height: 400px; overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #EEE6D7; }
+.da-map-section { position: relative; height: 350px; overflow: hidden; background: #EEE6D7; }
 .da-map-section iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+/* Shape divider Canvas (wave-2) sopra/sotto la mappa: "intaglia" il colore crema delle sezioni adiacenti. */
+.da-map-section .shape-divider svg { height: 45px; opacity: 1; }
+.da-map-section .shape-divider .shape-divider-fill { fill: #EEE6D7; }
+@media (min-width: 768px) { .da-map-section .shape-divider svg { height: 70px; } }
+/* Onda superiore più bassa così la targhetta indirizzo di Google (in alto a sinistra) resta visibile. */
+.da-map-section .shape-divider:not([data-position="bottom"]) svg { height: 28px; }
+@media (min-width: 768px) { .da-map-section .shape-divider:not([data-position="bottom"]) svg { height: 38px; } }
 .da-map { position: relative; height: 220px; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: #EEE6D7; }
 .da-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
 .da-map-shade { position: absolute; inset: 0; background: linear-gradient(120deg, transparent 30%, rgba(92, 29, 36, .35)); }
@@ -378,7 +444,7 @@ textarea.da-input { resize: vertical; }
 .da-footer { background: var(--ink); border-top: 1px solid var(--line); padding: 64px 24px 0; }
 .da-footer-inner { max-width: 1180px; margin: 0 auto; }
 .da-footer-cols { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 44px; padding-bottom: 48px; }
-.da-footer-col h4 { font-family: var(--font-display); font-weight: 700; font-size: 22px; margin: 0 0 20px; color: var(--cream); }
+.da-footer-col h3 { font-family: var(--font-display); font-weight: 700; font-size: 22px; margin: 0 0 20px; color: var(--cream); }
 
 .da-footer-logo { margin: 0 0 20px; }
 .da-footer-logo .da-logo-img { height: 60px; }
@@ -425,6 +491,7 @@ textarea.da-input { resize: vertical; }
 /* ---------- LG · ≤991px — tablet: nav a burger, contenuti a colonna singola ---------- */
 @media (max-width: 991.98px) {
 	.da-desktop-nav { display: none !important; }
+	.da-nav-mobile { display: flex !important; }
 	.da-burger { display: inline-flex !important; align-items: center; justify-content: center; }
 
 	.da-section { padding: 88px 24px; }
@@ -439,6 +506,7 @@ textarea.da-input { resize: vertical; }
 /* ---------- MD · ≤767px — tablet portrait / mobile landscape ---------- */
 @media (max-width: 767.98px) {
 	.da-section { padding: 72px 20px; }
+	#filosofia { padding: 0 20px; }
 	.da-hero { padding: 96px 20px 64px; }
 	.da-nav-inner { padding: 0 20px; }
 	.da-footer { padding: 56px 20px 0; }
@@ -451,6 +519,7 @@ textarea.da-input { resize: vertical; }
 /* ---------- SM · ≤575px — smartphone portrait ---------- */
 @media (max-width: 575.98px) {
 	.da-section { padding: 60px 16px; }
+	#filosofia { padding: 0 16px; }
 	.da-hero { padding: 92px 16px 56px; }
 	.da-nav-inner { padding: 0 16px; }
 	.da-footer { padding: 48px 16px 0; }
@@ -471,6 +540,7 @@ textarea.da-input { resize: vertical; }
 /* ---------- XS · ≤399px — telefoni piccoli ---------- */
 @media (max-width: 399.98px) {
 	.da-section { padding: 52px 13px; }
+	#filosofia { padding: 0 13px; }
 	.da-hero { padding: 88px 13px 52px; }
 	.da-nav-inner { padding: 0 13px; }
 	.da-logo-img { height: 52px; }
@@ -615,8 +685,10 @@ textarea.da-input { resize: vertical; }
 }
 
 /* ============================ Mascotte — saluto (figura intera) ============================ */
-/* mascotte.svg è una silhouette unica non scomponibile: si anima
-   l'intero blocco. Tre livelli annidati per non far collidere i
+/* mascotte-2.svg è un disegno a tracciato continuo (zampa, pelo e
+   corpo sono un pezzo unico non separabile): si anima l'intera
+   figura con un dondolìo gentile, così la zampa già alzata legge
+   come un "ciao". Tre livelli annidati per non far collidere i
    transform → stage: entrata · float: galleggiamento · img: saluto. */
 .da-mascotte-stage {
 	position: relative;
@@ -632,13 +704,13 @@ textarea.da-input { resize: vertical; }
 	animation: mascotteFloat 6s ease-in-out infinite;
 	transform-origin: 50% 100%;
 }
-/* immagine: cenno di saluto — ondeggia dalla base come un "ciao" */
+/* immagine: cenno di saluto — la figura ondeggia dalla base come un "ciao" */
 .da-mascotte {
 	display: block;
 	width: 100%;
 	height: auto;
-	transform-origin: 50% 92%;               /* perno vicino ai piedi */
-	animation: mascotteWave 7s ease-in-out .8s infinite;
+	transform-origin: 55% 96%;               /* perno in basso, lato zampa */
+	animation: mascotteWave 7s ease-in-out .9s infinite;
 	filter: drop-shadow(0 18px 30px rgba(24, 22, 21, .18));
 	-webkit-user-drag: none;
 	user-select: none;
@@ -652,12 +724,12 @@ textarea.da-input { resize: vertical; }
 /* Il "saluto": ondeggio deciso all'inizio del ciclo, poi fermo fino al prossimo */
 @keyframes mascotteWave {
 	0%   { transform: rotate(0deg); }
-	3%   { transform: rotate(-7deg); }
-	7%   { transform: rotate(6deg); }
-	11%  { transform: rotate(-5deg); }
-	15%  { transform: rotate(4deg); }
-	19%  { transform: rotate(-2deg); }
-	23%  { transform: rotate(0deg); }
+	4%   { transform: rotate(-5deg); }
+	9%   { transform: rotate(4deg); }
+	14%  { transform: rotate(-3.5deg); }
+	19%  { transform: rotate(2.5deg); }
+	24%  { transform: rotate(-1.5deg); }
+	29%  { transform: rotate(0deg); }
 	100% { transform: rotate(0deg); }
 }
 

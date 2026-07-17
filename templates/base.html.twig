@@ -53,9 +53,12 @@
 				<a class="da-cta da-btn-3d" data-hash data-hash-offset="50" {% if on_home %}href="#" data-href="#prenota"{% else %}href="{{ path('homepage_with_section', {'section': 'prenota'}) }}"{% endif %}>Prenota un Tavolo</a>
 			</div>
 
-			<button class="da-burger" aria-label="Menu">
-				<i class="fa-solid fa-bars"></i>
-			</button>
+			<div class="da-nav-mobile">
+				<a class="da-cta da-mobile-cta da-btn-3d" data-hash data-hash-offset="50" {% if on_home %}href="#" data-href="#prenota"{% else %}href="{{ path('homepage_with_section', {'section': 'prenota'}) }}"{% endif %}>Prenota</a>
+				<button class="da-burger" aria-label="Menu">
+					<i class="fa-solid fa-bars"></i>
+				</button>
+			</div>
 		</div>
 
 		{# Mobile drawer #}
@@ -64,7 +67,6 @@
 			<a data-hash data-hash-offset="50" {% if on_home %}href="#" data-href="#filosofia"{% else %}href="{{ path('homepage_with_section', {'section': 'filosofia'}) }}"{% endif %}>Chi siamo</a>
 			<a data-hash data-hash-offset="50" {% if on_home %}href="#" data-href="#menu"{% else %}href="{{ path('homepage_with_section', {'section': 'menu'}) }}"{% endif %}>La carta</a>
 			<a data-hash data-hash-offset="50" {% if on_home %}href="#" data-href="#contatti"{% else %}href="{{ path('homepage_with_section', {'section': 'contatti'}) }}"{% endif %}>Contatti</a>
-			<a class="da-cta" data-hash data-hash-offset="50" {% if on_home %}href="#" data-href="#prenota"{% else %}href="{{ path('homepage_with_section', {'section': 'prenota'}) }}"{% endif %}>Prenota un Tavolo</a>
 		</div>
 	</nav>
 	{% endblock %}
@@ -72,7 +74,7 @@
 	{% block body %}{% endblock %}
 
 	{% block footer %}
-	<footer class="da-footer">
+	<footer id="contatti" class="da-footer">
 		<div class="da-footer-inner">
 			<div class="da-footer-cols">
 
@@ -91,7 +93,7 @@
 
 				{# Colonna 2 — Dati di contatto #}
 				<div class="da-footer-col">
-					<h4>Da Andrea S.r.l.</h4>
+					<h3>Da Andrea S.r.l.</h3>
 					<ul class="da-fdata">
 						<li><i class="fa-solid fa-location-dot"></i> <span>Via Inveruno 30, 20003 Casorezzo (MI)</span></li>
 						<li><i class="fa-solid fa-phone"></i> <a href="tel:+393518595639">+39 351 859 5639</a></li>
@@ -102,7 +104,7 @@
 
 				{# Colonna 3 — Dati fiscali #}
 				<div class="da-footer-col">
-					<h4>Dati fiscali</h4>
+					<h3>Dati fiscali</h3>
 					<ul class="da-fdata plain">
 						<li><strong>P.IVA / C.F.</strong> <span class="val">00000000000</span></li>
 					</ul>
@@ -125,6 +127,11 @@
 		</div>
 	</footer>
 	{% endblock %}
+
+	{# Bottone WhatsApp fluttuante #}
+	<a id="whatsappBtn" href="https://wa.me/393518595639" target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp">
+		<i class="fa-brands fa-whatsapp"></i>
+	</a>
 
 	
 	{% block javascripts %}

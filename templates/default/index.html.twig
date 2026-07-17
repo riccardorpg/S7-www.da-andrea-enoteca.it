@@ -5,14 +5,33 @@
 {% block meta_description %}Da Andrea, Cucina con Enoteca a Casorezzo (MI): non un bar, non un ristorante tradizionale, ma il vostro spazio. Il tavolo è vostro dalle 19 a chiusura, senza secondi turni. Una cantina che promette di crescere.{% endblock %}
 
 {# ============================ Data ============================ #}
-{# Le cinque vite di Andrea — un soprannome per ognuna #}
-{% set lives = [
-	{ name: 'RAI',    note: '6 anni. Un campo di calcio.' },
-	{ name: 'MIURA',  note: 'Le medie. Un eroe giapponese.' },
-	{ name: 'PIPP8',  note: 'Si comincia a viaggiare.' },
-	{ name: 'YOGHI',  note: "L'amicizia, quella vera." },
-	{ name: 'ANDREA', note: 'Oggi. La sintesi di tutto.' }
+{# Le cinque tappe di Andrea — un soprannome e una sera per ognuna #}
+{% set tappe = [
+	{ num: '01', name: 'RAI', period: '6 anni', day: 'Martedì', icon: 'fa-solid fa-futbol', title: 'La pizza, l\'infanzia, le mani in pasta', bio: 'Dal mio cognome, Raimondo. Infanzia, erba tagliata, ginocchia sbucciate e merende a bordo campo.', text: 'Sono cresciuto dentro una pizzeria, in mezzo al fumo e alla farina. Mio papà impastava, mia mamma correva tra i tavoli: una squadra perfetta. Stasera vi cucino quella stessa pizza — la forma dei miei ricordi e i segreti raccolti viaggiando.' },
+	{ num: '02', name: 'MIURA', period: 'Le medie', day: 'Mercoledì', icon: 'fa-solid fa-dragon', title: 'La terra, il circolo, i segreti dei vecchietti', bio: 'Il taglio a spazzola come Kazuyoshi Miura, primo giapponese in Serie A. Un eroe da un pianeta lontano: il mondo iniziava a chiamarmi.', text: 'La pizzeria divenne un circolo: carte, vino rosso e anziani dai volti segnati. Da loro ho imparato la pazienza della casseruola che borbotta per ore sul fuoco. Stasera, la loro sapienza è tutta nel vostro piatto.' },
+	{ num: '03', name: 'PIPP8', period: 'Dai 14 ai 25', day: 'Venerdì', icon: 'fa-solid fa-plane-departure', title: 'Il mare, la notte, il cuore di Antonio', bio: 'La somiglianza con un ragazzo napoletano. Gli anni della strada, della scoperta, delle prime libertà.', text: 'Nel weekend il circolo si trasformava in una taverna di pesce. È qui che torna Antonio, pescivendolo di fiducia e uomo di grande cuore: da lui ho imparato a scegliere la materia prima. Stasera vi cucino quegli anni, quella fiducia e la libertà di sbagliare.' },
+	{ num: '04', name: 'YOGHI', period: 'Dopo i 25', day: 'Sabato', icon: 'fa-solid fa-hand-holding-heart', title: 'La tavola di casa, gli amici, la lentezza', bio: 'Io e il mio migliore amico, come Yoghi e Bubu: un legame tatuato sui polpacci a New York. Maturità, condivisione, leggerezza.', text: 'La sera della cucina del cuore. Piatti fatti per chi si vuole bene, senza l\'ansia di stupire: un sugo che stringe piano, una polpetta perfetta, un arrosto tenero. Perché la felicità ha un sapore preciso, ed è sempre una polpetta condivisa.' },
+	{ num: '05', name: 'ANDREA', period: 'Sempre', day: 'Giovedì', icon: 'fa-solid fa-utensils', now: true, title: 'Io, oggi. La sintesi', bio: 'Quello che ha rubato un po\' da ognuno. Ho girato il mondo per carpirne i segreti — un abbinamento, una cottura, il rispetto per la materia prima — e ho riportato tutto a casa.', text: 'Nessuna maschera, nessuna nostalgia: ci sono io, oggi, con tutto il mio bagaglio. Il menu di stasera è il mio diario di bordo — tecniche fatte mie oltreconfine e intuizioni personali. È la cucina che vi preparerei se vi invitassi a cena a casa mia. Solo io, per voi.' }
 ] %}
+
+{# La Dispensa di Andrea — un'unica categoria "Stuzzichini" divisa in sezioni (anteprima + carta PDF) #}
+{% set stuzzichini = {
+	slug: 'stuzzichini', name: 'Stuzzichini', icon: 'fa-solid fa-utensils',
+	sections: [
+		{ name: 'Salumi', icon: 'fa-solid fa-bacon',
+		  cap: 'Tagli italiani e spagnoli, al tagliere.',
+		  items: ['Prosciutto Crudo Don Romeo 24 mesi', 'Paleta Ibérico de Cebo', 'Crudo spagnolo', 'Chorizo', 'Cotto spagnolo', 'Salame Felino', 'Salame al Gorgonzola', 'Bresaola di Fassona'] },
+		{ name: 'Formaggi', icon: 'fa-solid fa-cheese',
+		  cap: 'Pochi, ma giusti — da accompagnare al calice.',
+		  items: ['Pecorino Sardo Sepi', 'Gorgonzola al cucchiaio', 'Grana Padano vacche rosse'] },
+		{ name: 'Tapas', icon: 'fa-solid fa-shrimp',
+		  cap: 'I piccoli morsi per ingannare l’attesa.',
+		  items: ['Crostino burro montato e acciuga del Mar Cantabrico', 'Crostino pomodoro, cipolla, olio e origano', 'Pancake con Philadelphia, salmone affumicato e gravlax, alghe wakame', 'Philadelphia, salmone affumicato e crema di avocado', 'Pancake burro montato e acciuga del Mar Cantabrico', 'Pancake burro montato e acciuga di Cetara', 'Bignè salati'] },
+		{ name: 'Contorni', icon: 'fa-solid fa-carrot',
+		  cap: 'Freschi e di casa, per completare.',
+		  items: ['Insalata russa come la fa Antonio', 'Giardiniera CBT', 'Panzanella', 'Coleslaw'] }
+	]
+} %}
 
 {% block body %}
 
@@ -34,8 +53,9 @@
 				</p>
 				<p class="da-hero-tagline"><span class="rule"></span> 17 tavoli · un'anima a sera</p>
 				<div class="da-hero-actions">
-					<a href="#contatti" class="da-btn-primary da-btn-3d"><i class="fa-solid fa-calendar-check"></i> Prenota un Tavolo</a>
-					<a href="#filosofia" class="da-btn-outline da-btn-3d"><i class="fa-solid fa-wand-magic-sparkles"></i> Come funziona</a>
+					{% set on_home = app.request.get('_route') == 'homepage' %}
+					<a {% if on_home %}href="#" data-href="#contatti" data-hash data-hash-offset="50"{% else %}href="{{ path('homepage_with_section', {'section': 'contatti'}) }}"{% endif %} class="da-btn-primary da-btn-3d"><i class="fa-solid fa-calendar-check"></i> Prenota un Tavolo</a>
+					<a {% if on_home %}href="#" data-href="#filosofia" data-hash data-hash-offset="50"{% else %}href="{{ path('homepage_with_section', {'section': 'filosofia'}) }}"{% endif %} class="da-btn-outline da-btn-3d"><i class="fa-solid fa-wand-magic-sparkles"></i> Come funziona</a>
 				</div>
 			</div>
 
@@ -65,30 +85,50 @@
 				</figure>
 
 				<div data-reveal class="da-story-body">
+					<p>Cinque tappe, un unico viaggio nel gusto. Tempi che ritornano, in continua evoluzione: ricette che raccontano la mia identità e i miei viaggi. Assaggiando, rivivo emozioni dimenticate e ritrovo i profumi di casa. Io sono un autodidatta. Non ho fatto scuole di cucina: ho solo bruciato tantissime padelle, finché non è uscito il piatto come dicevo io.</p>
 					<p>Il tavolo che prenotate è vostro dalle 19 fino a chiusura: nessun secondo turno, nessuna fretta. Venite al banco, ordinate quello che desiderate e ve lo portiamo noi — una bottiglia da gustare con calma, un tagliere da condividere o un piatto a testa. Decidete voi come costruire la serata.</p>
 					<p>Non dimentico mai da dove sono partito. Mio papà, mia mamma, il loro lavoro insieme; io che crescevo tra i tavoli e il forno. La pizza povera del sud, portata al nord dalle mani di un contadino salernitano diventato pizzaiolo. Oggi vi porto quei profumi e quei sapori — con le mie mani, con i miei ricordi.</p>
 				</div>
 			</div>
 
-			{# le cinque vite — timeline con i punti degli anni #}
-			<div data-reveal class="da-lives-block">
-				<div class="da-lives-intro">
-					<span class="da-lives-kicker">Cinque vite, un soprannome per ognuna</span>
-					<p>Ogni sera, uno di loro siede in cucina.</p>
-				</div>
-				<ol class="da-timeline">
-					{% for l in lives %}
-					<li class="da-tl-node{{ loop.last ? ' now' }}">
-						<span class="da-tl-dot"></span>
-						<span class="da-tl-name">{{ l.name }}</span>
-						<span class="da-tl-note">{{ l.note }}</span>
-					</li>
-					{% endfor %}
-				</ol>
-			</div>
 		</div>
 	</section>
 
+
+	{# ============================ Le cinque tappe · vite e serate ============================ #}
+	<section id="settimana" class="da-section week">
+		<img src="{{ asset('images/graphics_2026_07_15/icons/grapes.svg') }}" alt="" aria-hidden="true" class="da-float da-float-tappe">
+		<div class="da-wrap">
+			<div data-reveal class="da-week-head">
+				<span class="da-eyebrow"><span class="rule"></span> Cinque vite, un soprannome per ognuna</span>
+				<h2 class="da-h2">Cinque tappe, <em>un unico viaggio</em></h2>
+				<p>Non sono uno chef: sono un ragazzo che ha attraversato cinque vite, una per ogni soprannome. Ogni sera una di loro prende la cucina — e finisce nel vostro piatto.</p>
+			</div>
+
+			<div class="da-week-grid">
+				{% for t in tappe %}
+				<article data-reveal class="da-week-card{{ (t.now ?? false) ? ' now' }}">
+					<span class="da-week-num" aria-hidden="true">{{ t.num }}</span>
+					<div class="da-week-card-top">
+						<span class="da-week-icon"><i class="{{ t.icon }}"></i></span>
+						<div class="da-week-when">
+							<span class="da-week-day">{{ t.day }} · {{ t.period }}</span>
+							<span class="da-week-name">{{ t.name }}</span>
+						</div>
+					</div>
+					<h3 class="da-week-title">{{ t.title }}</h3>
+					<p class="da-week-bio">{{ t.bio }}</p>
+					<p class="da-week-text">{{ t.text }}</p>
+				</article>
+				{% endfor %}
+			</div>
+
+			<blockquote class="da-lives-quote">
+				<i class="fa-solid fa-quote-left"></i>
+				<p>Io sono un autodidatta. Non ho fatto scuole di cucina: ho solo bruciato tantissime padelle, finché non è uscito il piatto come dicevo io.</p>
+			</blockquote>
+		</div>
+	</section>
 
 	{# ============================ Separatore: barra rossa tra Chi siamo e La carta ============================ #}
 	{% set marqueeItems = [] %}
@@ -110,20 +150,24 @@
 	<section id="menu" class="da-section menu">
 		<img src="{{ asset('images/graphics_2026_07_15/icons/floating-grapes.svg') }}" alt="" aria-hidden="true" class="da-float da-float-grapes">
 		<img src="{{ asset('images/graphics_2026_07_15/icons/floating-glass.svg') }}" alt="" aria-hidden="true" class="da-float da-float-glass">
+		<img src="{{ asset('images/graphics_2026_07_15/icons/leaf-wine.svg') }}" alt="" aria-hidden="true" class="da-float da-float-leaf">
 		<div class="da-wrap narrow">
 			<div data-reveal class="da-menu-head">
 				<span class="da-eyebrow">La carta</span>
 				<h2 class="da-h2">Un assaggio di ciò che <em>vi aspetta</em></h2>
-				<p>La lista vini è appena nata: piccola, timida, un po' bozza… ma promette di crescere. Ogni sera, l'identità in cucina vi guiderà nella scelta della bottiglia perfetta.</p>
+				<p>Dalla dispensa alla cantina: salumi, formaggi, piccoli morsi da condividere e una lista vini che promette di crescere. Ogni sera, l'identità in cucina vi guiderà nella scelta.</p>
 			</div>
 
 			{% set categoryIcons = { rossi: 'fa-solid fa-wine-bottle', bianchi: 'fa-solid fa-wine-glass', bollicine: 'fa-solid fa-champagne-glasses' } %}
 
-			{# tabs #}
+			{# tabs — prima gli stuzzichini (cibo), poi i vini #}
 			<div class="da-tabs-wrap">
 				<div class="da-tabs">
+					<button class="da-tab active" data-tab="{{ stuzzichini.slug }}">
+						<i class="{{ stuzzichini.icon }}"></i>{{ stuzzichini.name }}
+					</button>
 					{% for c in wineCategories %}
-					<button class="da-tab{{ loop.first ? ' active' }}" data-tab="{{ c.slug }}">
+					<button class="da-tab" data-tab="{{ c.slug }}">
 						<i class="{{ categoryIcons[c.slug]|default('fa-solid fa-wine-glass') }}"></i>{{ c.name }}
 					</button>
 					{% endfor %}
@@ -136,11 +180,34 @@
 				bollicine: { tipo: 'Bollicine', bolla: 'Mosso', icon: 'fa-solid fa-champagne-glasses', cap: 'Franciacorta, Trento e prosecco: perlage fine per il brindisi.' }
 			} %}
 
-			{# panels #}
+			{# panel — stuzzichini: card di anteprima per sezione + carta PDF completa #}
+			<div class="da-menu-panel active" data-panel="{{ stuzzichini.slug }}">
+				<p class="da-wine-cap"><i class="{{ stuzzichini.icon }}"></i> Piccoli morsi da condividere, divisi in quattro sezioni. Il dettaglio completo è nella carta.</p>
+				<div class="da-wine-grid">
+					{% for s in stuzzichini.sections %}
+					<article class="da-wine-card">
+						<div class="da-wine-card-head">
+							<span class="da-wine-card-icon"><i class="{{ s.icon }}"></i></span>
+							<div class="da-wine-card-title">
+								<h3 class="da-wine-card-name">{{ s.name }}</h3>
+								<p class="da-wine-card-year">{{ s.cap }}</p>
+							</div>
+						</div>
+						<ul class="da-stuzzi-list">
+							{% for item in s.items %}<li>{{ item }}</li>{% endfor %}
+						</ul>
+					</article>
+					{% endfor %}
+				</div>
+				<div class="da-menu-cta">
+					<a href="{{ asset('documents/carta-stuzzichini.pdf') }}" class="da-btn-primary da-btn-3d" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Scarica la carta — Stuzzichini</a>
+				</div>
+			</div>
+
+			{# panels — vini #}
 			{% for c in wineCategories %}
 			{% set meta = wineMeta[c.slug]|default({ tipo: c.name, bolla: 'Fermo', icon: 'fa-solid fa-wine-glass', cap: '' }) %}
-			<div class="da-menu-panel{{ loop.first ? ' active' }}" data-panel="{{ c.slug }}">
-				{% if meta.cap %}<p class="da-wine-cap"><i class="{{ meta.icon }}"></i> {{ meta.cap }}</p>{% endif %}
+			<div class="da-menu-panel" data-panel="{{ c.slug }}">
 				<div class="da-wine-grid">
 					{% for wine in c.wines|slice(0, 4) %}
 					<article class="da-wine-card">
@@ -155,7 +222,7 @@
 					{% endfor %}
 				</div>
 				<div class="da-menu-cta">
-					<a href="{{ asset('pdf/carta-' ~ c.slug ~ '.pdf') }}" class="da-btn-primary da-btn-3d" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Scarica la carta — {{ c.name }}</a>
+					<a href="{{ asset('documents/carta-' ~ c.slug ~ '.pdf') }}" class="da-btn-primary da-btn-3d" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Scarica la carta — {{ c.name }}</a>
 				</div>
 			</div>
 			{% endfor %}
@@ -168,10 +235,19 @@
 			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d174.70721585110874!2d8.90028887712529!3d45.52385718900538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786f2f356815555%3A0x728e4259affd667f!2sVia%20Inveruno%2C%2030%2C%2020003%20Casorezzo%20MI!5e0!3m2!1sit!2sit!4v1784184893413!5m2!1sit!2sit"
 			title="Mappa Da Andrea — Via Inveruno 30, Casorezzo (MI)"
 			allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+
+		{# shape divider Canvas — wave-2, sopra e sotto la mappa #}
+		<div class="shape-divider shape-divider-complete" data-shape="wave-2" data-height="150">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 27.8" preserveAspectRatio="none" class="op-ts op-1"><path class="shape-divider-fill" d="M283.5,9.7c0,0-7.3,4.3-14,4.6c-6.8,0.3-12.6,0-20.9-1.5c-11.3-2-33.1-10.1-44.7-5.7	s-12.1,4.6-18,7.4c-6.6,3.2-20,9.6-36.6,9.3C131.6,23.5,99.5,7.2,86.3,8c-1.4,0.1-6.6,0.8-10.5,2c-3.8,1.2-9.4,3.8-17,4.7 c-3.2,0.4-8.3,1.1-14.2,0.9c-1.5-0.1-6.3-0.4-12-1.6c-5.7-1.2-11-3.1-15.8-3.7C6.5,9.2,0,10.8,0,10.8V0h283.5V9.7z M260.8,11.3 c-0.7-1-2-0.4-4.3-0.4c-2.3,0-6.1-1.2-5.8-1.1c0.3,0.1,3.1,1.5,6,1.9C259.7,12.2,261.4,12.3,260.8,11.3z M242.4,8.6 c0,0-2.4-0.2-5.6-0.9c-3.2-0.8-10.3-2.8-15.1-3.5c-8.2-1.1-15.8,0-15.1,0.1c0.8,0.1,9.6-0.6,17.6,1.1c3.3,0.7,9.3,2.2,12.4,2.7	C239.9,8.7,242.4,8.6,242.4,8.6z M185.2,8.5c1.7-0.7-13.3,4.7-18.5,6.1c-2.1,0.6-6.2,1.6-10,2c-3.9,0.4-8.9,0.4-8.8,0.5	c0,0.2,5.8,0.8,11.2,0c5.4-0.8,5.2-1.1,7.6-1.6C170.5,14.7,183.5,9.2,185.2,8.5z M199.1,6.9c0.2,0-0.8-0.4-4.8,1.1 c-4,1.5-6.7,3.5-6.9,3.7c-0.2,0.1,3.5-1.8,6.6-3C197,7.5,199,6.9,199.1,6.9z M283,6c-0.1,0.1-1.9,1.1-4.8,2.5s-6.9,2.8-6.7,2.7	c0.2,0,3.5-0.6,7.4-2.5C282.8,6.8,283.1,5.9,283,6z M31.3,11.6c0.1-0.2-1.9-0.2-4.5-1.2s-5.4-1.6-7.8-2C15,7.6,7.3,8.5,7.7,8.6	C8,8.7,15.9,8.3,20.2,9.3c2.2,0.5,2.4,0.5,5.7,1.6S31.2,11.9,31.3,11.6z M73,9.2c0.4-0.1,3.5-1.6,8.4-2.6c4.9-1.1,8.9-0.5,8.9-0.8 c0-0.3-1-0.9-6.2-0.3S72.6,9.3,73,9.2z M71.6,6.7C71.8,6.8,75,5.4,77.3,5c2.3-0.3,1.9-0.5,1.9-0.6c0-0.1-1.1-0.2-2.7,0.2	C74.8,5.1,71.4,6.6,71.6,6.7z M93.6,4.4c0.1,0.2,3.5,0.8,5.6,1.8c2.1,1,1.8,0.6,1.9,0.5c0.1-0.1-0.8-0.8-2.4-1.3	C97.1,4.8,93.5,4.2,93.6,4.4z M65.4,11.1c-0.1,0.3,0.3,0.5,1.9-0.2s2.6-1.3,2.2-1.2s-0.9,0.4-2.5,0.8C65.3,10.9,65.5,10.8,65.4,11.1 z M34.5,12.4c-0.2,0,2.1,0.8,3.3,0.9c1.2,0.1,2,0.1,2-0.2c0-0.3-0.1-0.5-1.6-0.4C36.6,12.8,34.7,12.4,34.5,12.4z M152.2,21.1 c-0.1,0.1-2.4-0.3-7.5-0.3c-5,0-13.6-2.4-17.2-3.5c-3.6-1.1,10,3.9,16.5,4.1C150.5,21.6,152.3,21,152.2,21.1z"></path><path class="shape-divider-fill" d="M269.6,18c-0.1-0.1-4.6,0.3-7.2,0c-7.3-0.7-17-3.2-16.6-2.9c0.4,0.3,13.7,3.1,17,3.3	C267.7,18.8,269.7,18,269.6,18z"></path><path class="shape-divider-fill" d="M227.4,9.8c-0.2-0.1-4.5-1-9.5-1.2c-5-0.2-12.7,0.6-12.3,0.5c0.3-0.1,5.9-1.8,13.3-1.2	S227.6,9.9,227.4,9.8z"></path><path class="shape-divider-fill" d="M204.5,13.4c-0.1-0.1,2-1,3.2-1.1c1.2-0.1,2,0,2,0.3c0,0.3-0.1,0.5-1.6,0.4	C206.4,12.9,204.6,13.5,204.5,13.4z"></path><path class="shape-divider-fill" d="M201,10.6c0-0.1-4.4,1.2-6.3,2.2c-1.9,0.9-6.2,3.1-6.1,3.1c0.1,0.1,4.2-1.6,6.3-2.6	S201,10.7,201,10.6z"></path><path class="shape-divider-fill" d="M154.5,26.7c-0.1-0.1-4.6,0.3-7.2,0c-7.3-0.7-17-3.2-16.6-2.9c0.4,0.3,13.7,3.1,17,3.3	C152.6,27.5,154.6,26.8,154.5,26.7z"></path><path class="shape-divider-fill" d="M41.9,19.3c0,0,1.2-0.3,2.9-0.1c1.7,0.2,5.8,0.9,8.2,0.7c4.2-0.4,7.4-2.7,7-2.6	c-0.4,0-4.3,2.2-8.6,1.9c-1.8-0.1-5.1-0.5-6.7-0.4S41.9,19.3,41.9,19.3z"></path><path class="shape-divider-fill" d="M75.5,12.6c0.2,0.1,2-0.8,4.3-1.1c2.3-0.2,2.1-0.3,2.1-0.5c0-0.1-1.8-0.4-3.4,0	C76.9,11.5,75.3,12.5,75.5,12.6z"></path><path class="shape-divider-fill" d="M15.6,13.2c0-0.1,4.3,0,6.7,0.5c2.4,0.5,5,1.9,5,2c0,0.1-2.7-0.8-5.1-1.4	C19.9,13.7,15.7,13.3,15.6,13.2z"></path></svg>
+		</div>
+		<div class="shape-divider shape-divider-complete" data-shape="wave-2" data-position="bottom" data-height="150">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 27.8" preserveAspectRatio="none" class="op-ts op-1"><path class="shape-divider-fill" d="M283.5,9.7c0,0-7.3,4.3-14,4.6c-6.8,0.3-12.6,0-20.9-1.5c-11.3-2-33.1-10.1-44.7-5.7	s-12.1,4.6-18,7.4c-6.6,3.2-20,9.6-36.6,9.3C131.6,23.5,99.5,7.2,86.3,8c-1.4,0.1-6.6,0.8-10.5,2c-3.8,1.2-9.4,3.8-17,4.7 c-3.2,0.4-8.3,1.1-14.2,0.9c-1.5-0.1-6.3-0.4-12-1.6c-5.7-1.2-11-3.1-15.8-3.7C6.5,9.2,0,10.8,0,10.8V0h283.5V9.7z M260.8,11.3 c-0.7-1-2-0.4-4.3-0.4c-2.3,0-6.1-1.2-5.8-1.1c0.3,0.1,3.1,1.5,6,1.9C259.7,12.2,261.4,12.3,260.8,11.3z M242.4,8.6 c0,0-2.4-0.2-5.6-0.9c-3.2-0.8-10.3-2.8-15.1-3.5c-8.2-1.1-15.8,0-15.1,0.1c0.8,0.1,9.6-0.6,17.6,1.1c3.3,0.7,9.3,2.2,12.4,2.7	C239.9,8.7,242.4,8.6,242.4,8.6z M185.2,8.5c1.7-0.7-13.3,4.7-18.5,6.1c-2.1,0.6-6.2,1.6-10,2c-3.9,0.4-8.9,0.4-8.8,0.5	c0,0.2,5.8,0.8,11.2,0c5.4-0.8,5.2-1.1,7.6-1.6C170.5,14.7,183.5,9.2,185.2,8.5z M199.1,6.9c0.2,0-0.8-0.4-4.8,1.1 c-4,1.5-6.7,3.5-6.9,3.7c-0.2,0.1,3.5-1.8,6.6-3C197,7.5,199,6.9,199.1,6.9z M283,6c-0.1,0.1-1.9,1.1-4.8,2.5s-6.9,2.8-6.7,2.7	c0.2,0,3.5-0.6,7.4-2.5C282.8,6.8,283.1,5.9,283,6z M31.3,11.6c0.1-0.2-1.9-0.2-4.5-1.2s-5.4-1.6-7.8-2C15,7.6,7.3,8.5,7.7,8.6	C8,8.7,15.9,8.3,20.2,9.3c2.2,0.5,2.4,0.5,5.7,1.6S31.2,11.9,31.3,11.6z M73,9.2c0.4-0.1,3.5-1.6,8.4-2.6c4.9-1.1,8.9-0.5,8.9-0.8 c0-0.3-1-0.9-6.2-0.3S72.6,9.3,73,9.2z M71.6,6.7C71.8,6.8,75,5.4,77.3,5c2.3-0.3,1.9-0.5,1.9-0.6c0-0.1-1.1-0.2-2.7,0.2	C74.8,5.1,71.4,6.6,71.6,6.7z M93.6,4.4c0.1,0.2,3.5,0.8,5.6,1.8c2.1,1,1.8,0.6,1.9,0.5c0.1-0.1-0.8-0.8-2.4-1.3	C97.1,4.8,93.5,4.2,93.6,4.4z M65.4,11.1c-0.1,0.3,0.3,0.5,1.9-0.2s2.6-1.3,2.2-1.2s-0.9,0.4-2.5,0.8C65.3,10.9,65.5,10.8,65.4,11.1 z M34.5,12.4c-0.2,0,2.1,0.8,3.3,0.9c1.2,0.1,2,0.1,2-0.2c0-0.3-0.1-0.5-1.6-0.4C36.6,12.8,34.7,12.4,34.5,12.4z M152.2,21.1 c-0.1,0.1-2.4-0.3-7.5-0.3c-5,0-13.6-2.4-17.2-3.5c-3.6-1.1,10,3.9,16.5,4.1C150.5,21.6,152.3,21,152.2,21.1z"></path><path class="shape-divider-fill" d="M269.6,18c-0.1-0.1-4.6,0.3-7.2,0c-7.3-0.7-17-3.2-16.6-2.9c0.4,0.3,13.7,3.1,17,3.3	C267.7,18.8,269.7,18,269.6,18z"></path><path class="shape-divider-fill" d="M227.4,9.8c-0.2-0.1-4.5-1-9.5-1.2c-5-0.2-12.7,0.6-12.3,0.5c0.3-0.1,5.9-1.8,13.3-1.2	S227.6,9.9,227.4,9.8z"></path><path class="shape-divider-fill" d="M204.5,13.4c-0.1-0.1,2-1,3.2-1.1c1.2-0.1,2,0,2,0.3c0,0.3-0.1,0.5-1.6,0.4	C206.4,12.9,204.6,13.5,204.5,13.4z"></path><path class="shape-divider-fill" d="M201,10.6c0-0.1-4.4,1.2-6.3,2.2c-1.9,0.9-6.2,3.1-6.1,3.1c0.1,0.1,4.2-1.6,6.3-2.6	S201,10.7,201,10.6z"></path><path class="shape-divider-fill" d="M154.5,26.7c-0.1-0.1-4.6,0.3-7.2,0c-7.3-0.7-17-3.2-16.6-2.9c0.4,0.3,13.7,3.1,17,3.3	C152.6,27.5,154.6,26.8,154.5,26.7z"></path><path class="shape-divider-fill" d="M41.9,19.3c0,0,1.2-0.3,2.9-0.1c1.7,0.2,5.8,0.9,8.2,0.7c4.2-0.4,7.4-2.7,7-2.6	c-0.4,0-4.3,2.2-8.6,1.9c-1.8-0.1-5.1-0.5-6.7-0.4S41.9,19.3,41.9,19.3z"></path><path class="shape-divider-fill" d="M75.5,12.6c0.2,0.1,2-0.8,4.3-1.1c2.3-0.2,2.1-0.3,2.1-0.5c0-0.1-1.8-0.4-3.4,0	C76.9,11.5,75.3,12.5,75.5,12.6z"></path><path class="shape-divider-fill" d="M15.6,13.2c0-0.1,4.3,0,6.7,0.5c2.4,0.5,5,1.9,5,2c0,0.1-2.7-0.8-5.1-1.4	C19.9,13.7,15.7,13.3,15.6,13.2z"></path></svg>
+		</div>
 	</section>
 
 	{# ============================ Prenota · Contatti ============================ #}
 	<section id="prenota" class="da-section contatti">
+		<img src="{{ asset('images/graphics_2026_07_15/icons/4.svg') }}" alt="" aria-hidden="true" class="da-float da-float-prenota">
 		<div class="da-wrap">
 			<div class="da-contact">
 
@@ -221,47 +297,6 @@
 					</form>
 				</div>
 
-				{# info #}
-				<div id="contatti" data-reveal class="da-info">
-					<div class="da-info-card">
-						<div class="da-info-row">
-							<span class="da-info-icon"><i class="fa-solid fa-location-dot"></i></span>
-							<div>
-								<div class="da-info-label">Dove</div>
-								<div class="da-info-val"><a href="https://www.google.com/maps/search/?api=1&query=Via+Inveruno+30+20003+Casorezzo+MI" target="_blank" rel="noopener">Via Inveruno 30, Casorezzo (MI) · 20003</a></div>
-							</div>
-						</div>
-						<div class="da-divider"></div>
-						<div class="da-info-row">
-							<span class="da-info-icon"><i class="fa-solid fa-envelope"></i></span>
-							<div>
-								<div class="da-info-label">Email</div>
-								<div class="da-info-val"><a href="mailto:cucina.da.andrea@gmail.com">cucina.da.andrea@gmail.com</a></div>
-							</div>
-						</div>
-						<div class="da-divider"></div>
-						<div class="da-info-row">
-							<span class="da-info-icon"><i class="fa-solid fa-phone"></i></span>
-							<div>
-								<div class="da-info-label">Telefono</div>
-								<div class="da-info-val"><a href="tel:+393518595639">351 859 5639</a></div>
-							</div>
-						</div>
-						<div class="da-divider"></div>
-						<div class="da-info-row">
-							<span class="da-info-icon"><i class="fa-solid fa-clock"></i></span>
-							<div>
-								<div class="da-info-label">Orari</div>
-								<div class="da-info-val">Mar–Dom dalle <strong>19.00</strong> a chiusura <br>Lunedì chiuso</div>
-							</div>
-						</div>
-						<div class="da-divider"></div>
-						<div class="da-info-actions">
-							<a href="tel:+393518595639" class="da-call"><i class="fa-solid fa-phone"></i> Chiama</a>
-							<a href="https://wa.me/393518595639" target="_blank" rel="noopener" class="da-wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-						</div>
-					</div>
-				</div>
 
 			</div>
 		</div>
