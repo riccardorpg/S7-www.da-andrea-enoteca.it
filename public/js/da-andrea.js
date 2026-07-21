@@ -14,6 +14,7 @@
 		initTabs();
 		initForm();
 		initEmbers();
+		initGallery();
 	});
 
 	/* --------------- Smooth scroll for nav hash links --------------- */
@@ -126,6 +127,59 @@
 				if (submitBtn) submitBtn.disabled = false;
 				alert(err.message || 'Invio non riuscito. Riprova o chiamaci direttamente.');
 			});
+		});
+	}
+
+	/* --------------- Gallery lightbox (locale) --------------- */
+	function initGallery() {
+		var items = Array.prototype.slice.call(document.querySelectorAll('[data-gallery]'));
+		var lb = document.getElementById('da-lightbox');
+		if (!items.length || !lb) return;
+
+		var img = lb.querySelector('.da-lb-img');
+		var cap = lb.querySelector('.da-lb-caption');
+		var btnClose = lb.querySelector('.da-lb-close');
+		var btnPrev = lb.querySelector('.da-lb-prev');
+		var btnNext = lb.querySelector('.da-lb-next');
+		var current = 0;
+
+		function show(i) {
+			current = (i + items.length) % items.length;
+			var el = items[current];
+			img.src = el.getAttribute('data-src');
+			var text = el.getAttribute('data-caption') || '';
+			img.alt = text;
+			cap.textContent = text;
+		}
+		function open(i) {
+			show(i);
+			lb.classList.add('open');
+			lb.setAttribute('aria-hidden', 'false');
+			document.body.style.overflow = 'hidden';
+			btnClose.focus();
+		}
+		function close() {
+			lb.classList.remove('open');
+			lb.setAttribute('aria-hidden', 'true');
+			document.body.style.overflow = '';
+			img.src = '';
+		}
+
+		items.forEach(function (el, i) {
+			el.addEventListener('click', function () { open(i); });
+			el.addEventListener('keydown', function (e) {
+				if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+			});
+		});
+		btnClose.addEventListener('click', close);
+		btnPrev.addEventListener('click', function () { show(current - 1); });
+		btnNext.addEventListener('click', function () { show(current + 1); });
+		lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+		document.addEventListener('keydown', function (e) {
+			if (!lb.classList.contains('open')) return;
+			if (e.key === 'Escape') close();
+			else if (e.key === 'ArrowLeft') show(current - 1);
+			else if (e.key === 'ArrowRight') show(current + 1);
 		});
 	}
 

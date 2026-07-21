@@ -189,6 +189,8 @@ a:hover { color: var(--cream); }
 .da-tab[data-tab="bianchi"].active   { background: var(--amber); color: #1a0f0a; }
 .da-tab[data-tab="bollicine"].active { background: var(--ember); }
 .da-tab[data-tab="stuzzichini"].active { background: var(--wine-2); }
+.da-tab[data-tab="cucina"].active { background: var(--ember); }
+.da-tab[data-tab="enoteca"].active { background: var(--wine-2); }
 
 .da-menu-panel { display: none; animation: tabFade .5s cubic-bezier(.2, .7, .2, 1) both; }
 .da-menu-panel.active { display: block; }
@@ -241,6 +243,25 @@ a:hover { color: var(--cream); }
 .da-stuzzi-list li::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: rgba(92, 29, 36, .4); }
 .da-stuzzi-list li.more { color: var(--ember-2); font-weight: 600; font-size: 12.5px; }
 .da-stuzzi-list li.more::before { background: none; }
+
+/* Prezzo nel calice/piatto: allineato a destra nella testa della card */
+.da-wine-card-title { flex: 1 1 auto; min-width: 0; }
+.da-wine-card-price { flex: none; margin-left: auto; align-self: flex-start; font-family: var(--font-sans); font-weight: 600; font-size: 15px; color: var(--ember); white-space: nowrap; }
+
+/* Enoteca: gruppi (rossi / bianchi / bollicine) dentro un unico pannello */
+.da-wine-group { max-width: 1080px; margin: 0 auto 34px; }
+.da-wine-group:last-of-type { margin-bottom: 8px; }
+.da-wine-group-head { display: flex; align-items: center; gap: 14px; margin: 0 0 18px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.da-wine-group-name { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: clamp(20px, 2.6vw, 26px); color: var(--cream); }
+
+/* Carta cucina: voci con nome, descrizione e prezzo */
+.da-dish-list { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.da-dish-list li { display: flex; align-items: baseline; gap: 12px; }
+.da-dish-info { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.da-dish-name { font-size: 14px; line-height: 1.35; color: var(--cream); font-weight: 500; }
+.da-dish-desc { font-size: 12.5px; line-height: 1.4; color: var(--muted); font-weight: 300; }
+.da-dish-price { flex: none; font-family: var(--font-sans); font-weight: 600; font-size: 14px; color: var(--ember); white-space: nowrap; }
+
 @media (max-width: 575.98px) { .da-wine-grid { grid-template-columns: 1fr; } }
 
 /* Floating decorations (grapes & glass) — adapted from the Canvas "Wine" demo */
@@ -548,6 +569,58 @@ textarea.da-input { resize: vertical; }
 	.da-tab { flex: 1 1 auto; text-align: center; padding: 10px 12px; }
 	.da-btn-primary, .da-btn-outline { width: 100%; justify-content: center; }
 	.da-hero-actions { width: 100%; }
+}
+
+/* ============================ Il locale · gallery di accoglienza ============================ */
+.da-section.gallery { background: linear-gradient(180deg, var(--ink), #F3EEE4); overflow: hidden; }
+.da-gallery-head { text-align: center; max-width: 680px; margin: 0 auto 50px; }
+.da-gallery-head .da-eyebrow { justify-content: center; }
+.da-gallery-head .da-h2 { margin: 16px 0 12px; }
+.da-gallery-head p { color: var(--muted); font-size: 16px; line-height: 1.6; margin: 0; font-weight: 300; }
+
+/* masonry a colonne: gestisce da sé il mix di foto verticali e orizzontali */
+/* griglia uniforme: le 8 principali su 4 colonne (2 righe), senza didascalie */
+.da-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+/* in griglia mostriamo solo le prime 8: le altre restano nel DOM (e nel lightbox) ma nascoste */
+.da-gallery-item.is-hidden { display: none; }
+.da-gallery-item {
+	position: relative; margin: 0; border-radius: 16px; overflow: hidden;
+	border: 1px solid var(--line); box-shadow: 0 14px 34px rgba(24, 22, 21, .08);
+	cursor: pointer; background: var(--ink-3); outline: none;
+}
+.da-gallery-item img { display: block; width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .7s cubic-bezier(.2, .7, .2, 1); }
+.da-gallery-item:hover img,
+.da-gallery-item:focus-visible img { transform: scale(1.06); }
+.da-gallery-item:focus-visible { box-shadow: 0 0 0 3px rgba(217, 93, 57, .5), 0 14px 34px rgba(24, 22, 21, .08); }
+@media (max-width: 991.98px) { .da-gallery { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 575.98px) { .da-gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+@media (prefers-reduced-motion: reduce) { .da-gallery-item img { transition: none; } }
+
+/* Lightbox */
+.da-lightbox {
+	position: fixed; inset: 0; z-index: 9999; display: none;
+	align-items: center; justify-content: center; padding: 5vh 24px;
+	background: rgba(15, 13, 12, .92); backdrop-filter: blur(6px); opacity: 0; transition: opacity .3s ease;
+}
+.da-lightbox.open { display: flex; opacity: 1; }
+.da-lb-figure { margin: 0; max-width: min(1100px, 92vw); max-height: 90vh; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.da-lb-img { max-width: 100%; max-height: 82vh; width: auto; height: auto; border-radius: 12px; box-shadow: 0 30px 80px rgba(0, 0, 0, .6); display: block; }
+.da-lb-caption { color: var(--ink); font-family: var(--font-display); font-style: italic; font-size: clamp(15px, 2vw, 20px); text-align: center; }
+.da-lb-close, .da-lb-nav {
+	position: absolute; background: rgba(255, 255, 255, .10); border: 1px solid rgba(255, 255, 255, .22);
+	color: #fff; width: 52px; height: 52px; border-radius: 50%; cursor: pointer; font-size: 20px;
+	display: inline-flex; align-items: center; justify-content: center; transition: background .25s ease, transform .25s ease;
+}
+.da-lb-close:hover, .da-lb-nav:hover { background: var(--ember); transform: scale(1.06); }
+.da-lb-close { top: 22px; right: 22px; }
+.da-lb-nav { top: 50%; transform: translateY(-50%); }
+.da-lb-nav:hover { transform: translateY(-50%) scale(1.06); }
+.da-lb-prev { left: 20px; }
+.da-lb-next { right: 20px; }
+@media (max-width: 575.98px) {
+	.da-lb-nav { width: 44px; height: 44px; font-size: 17px; }
+	.da-lb-prev { left: 8px; } .da-lb-next { right: 8px; }
+	.da-lb-close { top: 12px; right: 12px; }
 }
 
 /* ============================ Yoghi — mascotte animata ============================ */

@@ -28,6 +28,9 @@ class Wine
     #[ORM\Column(name: "year", type: "integer", nullable: true)]
     private ?int $year = null;
 
+    #[ORM\Column(name: "price", type: "decimal", precision: 6, scale: 2, nullable: true)]
+    private ?string $price = null;
+
     // MANY TO ONE
     #[ORM\ManyToOne(targetEntity: WineCategory::class, inversedBy: "wines")]
     #[ORM\JoinColumn(name: "category_id", referencedColumnName: "id")]
@@ -89,6 +92,31 @@ class Wine
         $this->year = $year;
 
         return $this;
+    }
+
+    public function getPrice(): ?string
+    {
+        return $this->price;
+    }
+
+    public function setPrice(?string $price): static
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Prezzo formattato all'italiana per la carta e le card: "26,00".
+     * Restituisce null se il prezzo non è indicato.
+     */
+    public function getFormattedPrice(): ?string
+    {
+        if ($this->price === null) {
+            return null;
+        }
+
+        return number_format((float) $this->price, 2, ',', '.');
     }
 
     public function getCategory(): ?WineCategory

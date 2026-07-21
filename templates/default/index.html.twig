@@ -14,22 +14,101 @@
 	{ num: '05', name: 'ANDREA', period: 'Sempre', day: 'Giovedì', icon: 'fa-solid fa-utensils', now: true, title: 'Io, oggi. La sintesi', bio: 'Quello che ha rubato un po\' da ognuno. Ho girato il mondo per carpirne i segreti — un abbinamento, una cottura, il rispetto per la materia prima — e ho riportato tutto a casa.', text: 'Nessuna maschera, nessuna nostalgia: ci sono io, oggi, con tutto il mio bagaglio. Il menu di stasera è il mio diario di bordo — tecniche fatte mie oltreconfine e intuizioni personali. È la cucina che vi preparerei se vi invitassi a cena a casa mia. Solo io, per voi.' }
 ] %}
 
-{# La Dispensa di Andrea — un'unica categoria "Stuzzichini" divisa in sezioni (anteprima + carta PDF) #}
-{% set stuzzichini = {
-	slug: 'stuzzichini', name: 'Stuzzichini', icon: 'fa-solid fa-utensils',
+{# La Cucina di Andrea — La Dispensa e i piatti della sera (anteprima + carta PDF completa) #}
+{% set cucina = {
+	slug: 'cucina', name: 'Cucina', icon: 'fa-solid fa-utensils',
 	sections: [
-		{ name: 'Salumi', icon: 'fa-solid fa-bacon',
+		{ name: 'I piatti della sera', icon: 'fa-solid fa-fish',
+		  cap: 'Il pescato e le proposte che cambiano ogni sera.',
+		  items: [
+			{ n: 'Un Rombo tra Barcellona e Bari', d: 'Rombo con cime di rapa stufate e ripassate in padella con aglio, olio, peperoncino e Jamón Serrano', p: '13,00' },
+			{ n: 'Fritto Rosa', d: 'Calamari rosa della Patagonia con julienne di zucchine e tagliatelle di carote', p: '13,00' },
+			{ n: 'Cavatelli Mamma & Figlia estiva', d: 'Pomodorini saltati con scalogno e olio evo, gamberi sfumati al cognac, pesto alla genovese e stracciatella', p: '10,00' },
+			{ n: 'Zucchine', d: 'Julienne di zucchine saltata in padella con olio evo ed erbe provenzali', p: '5,00' }
+		] },
+		{ name: 'La Salumeria', icon: 'fa-solid fa-bacon',
 		  cap: 'Tagli italiani e spagnoli, al tagliere.',
-		  items: ['Prosciutto Crudo Don Romeo 24 mesi', 'Paleta Ibérico de Cebo', 'Crudo spagnolo', 'Chorizo', 'Cotto spagnolo', 'Salame Felino', 'Salame al Gorgonzola', 'Bresaola di Fassona'] },
-		{ name: 'Formaggi', icon: 'fa-solid fa-cheese',
+		  items: [
+			{ n: 'Prosciutto Crudo Don Romeo 24 mesi — Levoni', p: '8,00' },
+			{ n: 'Jamón Serrano — Hermanos', p: '8,00' },
+			{ n: 'Lardo di Patanegra', p: '8,00' },
+			{ n: 'Chorizo Magno — Alejandro', p: '8,00' },
+			{ n: 'La Bresaola di Fassona', p: '8,00' },
+			{ n: 'Salame Felino', p: '8,00' },
+			{ n: 'Salame di Maiale Nero', p: '8,00' },
+			{ n: 'Spianata di Cervo', p: '8,00' }
+		] },
+		{ name: 'I Formaggi', icon: 'fa-solid fa-cheese',
 		  cap: 'Pochi, ma giusti — da accompagnare al calice.',
-		  items: ['Pecorino Sardo Sepi', 'Gorgonzola al cucchiaio', 'Grana Padano vacche rosse'] },
-		{ name: 'Tapas', icon: 'fa-solid fa-shrimp',
-		  cap: 'I piccoli morsi per ingannare l’attesa.',
-		  items: ['Crostino burro montato e acciuga del Mar Cantabrico', 'Crostino pomodoro, cipolla, olio e origano', 'Pancake con Philadelphia, salmone affumicato e gravlax, alghe wakame', 'Philadelphia, salmone affumicato e crema di avocado', 'Pancake burro montato e acciuga del Mar Cantabrico', 'Pancake burro montato e acciuga di Cetara', 'Bignè salati'] },
-		{ name: 'Contorni', icon: 'fa-solid fa-carrot',
-		  cap: 'Freschi e di casa, per completare.',
-		  items: ['Insalata russa come la fa Antonio', 'Giardiniera CBT', 'Panzanella', 'Coleslaw'] }
+		  items: [
+			{ n: 'Gorgonzola DOP al cucchiaio — Piano Rosa', p: '8,00' },
+			{ n: 'Selezione di Pecorini Sardi — Azienda Sepi', p: '8,00' },
+			{ n: 'Grana Padano 24 mesi — vacche rosse e vacca bruna', p: '8,00' }
+		] },
+		{ name: 'Il Pesce, sott’olio e affumicato', icon: 'fa-solid fa-fish-fins',
+		  cap: 'Serviti con burro e crostini.',
+		  items: [
+			{ n: 'Filetti di acciuga di Cetara', p: '8,00' },
+			{ n: 'Filetti di acciuga del Mar Cantabrico', p: '8,00' },
+			{ n: 'Salmone affumicato norvegese', p: '8,00' }
+		] },
+		{ name: 'Verdure & sottaceti', icon: 'fa-solid fa-carrot',
+		  cap: 'Sott’olio e sottaceto, per accompagnare.',
+		  items: [
+			{ n: 'Carciofini piccoli sott’olio', p: '4,00' },
+			{ n: 'Cipolline', p: '4,00' },
+			{ n: 'Cetriolini', p: '4,00' },
+			{ n: 'Olive di Cerignola', p: '4,00' },
+			{ n: 'Giardiniera', p: '4,00' }
+		] },
+		{ name: 'Panificati', icon: 'fa-solid fa-bread-slice',
+		  cap: 'Il pane giusto per ogni morso.',
+		  items: [
+			{ n: 'Pane Carasau', p: '2,00' },
+			{ n: 'Rubatà', p: '2,00' },
+			{ n: 'Soffietti di mais', p: '2,00' }
+		] },
+		{ name: 'Sembrano dolci', icon: 'fa-solid fa-stroopwafel',
+		  cap: 'Pancake salati, un gioco di consistenze.',
+		  items: [
+			{ n: 'Pancake, Philadelphia e salmone affumicato', d: 'con granita di alghe wakame', p: '7,00' },
+			{ n: 'Pancake, Philadelphia e roast-beef all’inglese', d: 'con glassa di aceto balsamico', p: '7,00' }
+		] },
+		{ name: 'La Carne estiva', icon: 'fa-solid fa-cow',
+		  cap: 'Crude e battute, fresche di stagione.',
+		  items: [
+			{ n: 'Roast-beef all’inglese', d: 'rucola, pomodorini e scaglie di grana', p: '8,00' },
+			{ n: 'Bresaola di Fassona', d: 'rucola, pomodorini e scaglie di grana', p: '8,00' },
+			{ n: 'Tartare di bovino adulto al naturale', d: 'senape di Digione, mini cetriolini, trito di capperi sotto sale', p: '8,00' },
+			{ n: 'Tartare di bovino adulto amalgamata', d: 'senape di Digione, miele millefiori, capperi, cipolla di Tropea, olio evo, sale Maldon, polvere di 4 pepi', p: '8,00' }
+		] },
+		{ name: 'La Spagna', icon: 'fa-solid fa-pepper-hot',
+		  cap: 'La tortilla, liscia o con salsa brava.',
+		  items: [
+			{ n: 'Tortilla di patate liscia', p: '8,00' },
+			{ n: 'Tortilla di patate liscia con salsa brava', p: '8,00' }
+		] },
+		{ name: 'Bevande', icon: 'fa-solid fa-beer-mug-empty',
+		  cap: 'Acque, bibite e birre Ayinger.',
+		  items: [
+			{ n: 'Acqua Panna 0,50 L', p: '3,00' },
+			{ n: 'Acqua San Pellegrino 0,50 L', p: '3,00' },
+			{ n: 'Coca-Cola VAP 0,33 L', p: '3,00' },
+			{ n: 'Sprite / Gazzosa VAP 0,33 L', p: '3,00' },
+			{ n: 'Birra Ayinger Bräuweisse 0,50 L', p: '6,00' },
+			{ n: 'Birra Ayinger Kellerbier 0,50 L', p: '6,00' },
+			{ n: 'Birra Ayinger Bairisch Pils 0,50 L', p: '6,00' },
+			{ n: 'Caffè selezione Oldani', p: '2,00' }
+		] },
+		{ name: 'Per finire il viaggio — i dolci', icon: 'fa-solid fa-ice-cream',
+		  cap: 'Tutto ciò che finisce bene, finisce con un dolce.',
+		  items: [
+			{ n: 'Gateau al cioccolato fondente', d: 'cuore caldo, gelato e panna montata', p: '8,00' },
+			{ n: 'Macaron', d: '6 pezzi, 6 gusti misti', p: '8,00' },
+			{ n: 'Sù-Tirami', p: '5,00' },
+			{ n: 'Fruttini gelato', d: 'in arrivo' },
+			{ n: 'Scorze di arancia candite e glassate al cioccolato', d: 'in arrivo' }
+		] }
 	]
 } %}
 
@@ -85,7 +164,7 @@
 				</figure>
 
 				<div data-reveal class="da-story-body">
-					<p>Cinque tappe, un unico viaggio nel gusto. Tempi che ritornano, in continua evoluzione: ricette che raccontano la mia identità e i miei viaggi. Assaggiando, rivivo emozioni dimenticate e ritrovo i profumi di casa. Io sono un autodidatta. Non ho fatto scuole di cucina: ho solo bruciato tantissime padelle, finché non è uscito il piatto come dicevo io.</p>
+					<p>Cinque tappe, un unico viaggio nel gusto. Tempi che ritornano, in continua evoluzione: ricette che raccontano la mia identità e i miei viaggi. Assaggiando, rivivo emozioni dimenticate e ritrovo i profumi di casa.</p>
 					<p>Il tavolo che prenotate è vostro dalle 19 fino a chiusura: nessun secondo turno, nessuna fretta. Venite al banco, ordinate quello che desiderate e ve lo portiamo noi — una bottiglia da gustare con calma, un tagliere da condividere o un piatto a testa. Decidete voi come costruire la serata.</p>
 					<p>Non dimentico mai da dove sono partito. Mio papà, mia mamma, il loro lavoro insieme; io che crescevo tra i tavoli e il forno. La pizza povera del sud, portata al nord dalle mani di un contadino salernitano diventato pizzaiolo. Oggi vi porto quei profumi e quei sapori — con le mie mani, con i miei ricordi.</p>
 				</div>
@@ -93,6 +172,60 @@
 
 		</div>
 	</section>
+
+
+	{# ============================ Il locale · gallery di accoglienza ============================ #}
+	{# Le prime 8 (varie, senza ripetizioni: 3 sala · 3 enoteca · 2 banco) sono visibili in griglia;
+	   le restanti restano nel DOM ma nascoste — raggiungibili scorrendo il lightbox. #}
+	{% set galleria = [
+		{ img: 'sala-quadri',             w: 1600, h: 1200, zona: 'La sala',    icon: 'fa-solid fa-utensils',          cap: 'La sala apparecchiata' },
+		{ img: 'bancone-vetrina',         w: 1600, h: 1200, zona: 'Il banco',   icon: 'fa-solid fa-shrimp',            cap: 'La vetrina del banco' },
+		{ img: 'enoteca-cantina',         w: 1200, h: 1600, zona: 'Enoteca',    icon: 'fa-solid fa-wine-bottle',       cap: 'La cantina refrigerata' },
+		{ img: 'sala-tavoli-sera',        w: 1200, h: 1600, zona: 'La sala',    icon: 'fa-solid fa-champagne-glasses', cap: 'La sala, la sera' },
+		{ img: 'enoteca-salumi-basilico', w: 1600, h: 1200, zona: 'Enoteca',    icon: 'fa-solid fa-bacon',             cap: 'Salumi, sott’oli e profumi' },
+		{ img: 'bancone-vini',            w: 1600, h: 1200, zona: 'Il banco',   icon: 'fa-solid fa-wine-glass',        cap: 'Il bancone e la mescita' },
+		{ img: 'enoteca-bollicine',       w: 1200, h: 1600, zona: 'Enoteca',    icon: 'fa-solid fa-champagne-glasses', cap: 'Le bollicine' },
+		{ img: 'sala-verso-enoteca',      w: 1600, h: 1200, zona: 'La sala',    icon: 'fa-solid fa-archway',           cap: 'Dalla sala verso l’enoteca' },
+		{ img: 'enoteca-scaffali',        w: 1200, h: 1600, zona: 'Enoteca',    icon: 'fa-solid fa-wine-glass',        cap: 'Gli scaffali dei vini' },
+		{ img: 'sala-tavoli',             w: 1600, h: 1200, zona: 'La sala',    icon: 'fa-solid fa-chair',             cap: 'I tavoli, il vostro spazio' },
+		{ img: 'bancone',                 w: 1600, h: 1200, zona: 'Il banco',   icon: 'fa-solid fa-mug-hot',           cap: 'Dietro al bancone' },
+		{ img: 'sala-arco',               w: 1600, h: 1200, zona: 'La sala',    icon: 'fa-solid fa-archway',           cap: 'L’arco tra le due sale' },
+		{ img: 'enoteca-corridoio',       w: 1200, h: 1600, zona: 'Enoteca',    icon: 'fa-solid fa-wine-bottle',       cap: 'Tra gli scaffali' },
+		{ img: 'sala-corridoio',          w: 1200, h: 1600, zona: 'La sala',    icon: 'fa-solid fa-utensils',          cap: 'La sala lunga' },
+		{ img: 'enoteca-vetrina-salumi',  w: 1600, h: 1200, zona: 'Il banco',  icon: 'fa-solid fa-cheese',            cap: 'La vetrina dei salumi' },
+		{ img: 'bancone-scaffali',        w: 1600, h: 1200, zona: 'Il banco',  icon: 'fa-solid fa-wine-glass',        cap: 'Il banco e i vini' },
+		{ img: 'enoteca-scaffali-basso',  w: 1200, h: 1600, zona: 'Enoteca',   icon: 'fa-solid fa-wine-bottle',       cap: 'Bottiglie a vista' }
+	] %}
+	<section id="locale" class="da-section gallery">
+		<div class="da-wrap">
+			<div data-reveal class="da-gallery-head">
+				<span class="da-eyebrow"><span class="rule"></span> Il locale</span>
+				<h2 class="da-h2">Uno sguardo <em>dentro</em></h2>
+				<p>La sala, il banco e l’enoteca: il vostro spazio a Casorezzo. Aprite una foto per sfogliarle tutte — poi venite a viverlo di persona.</p>
+			</div>
+
+			<div class="da-gallery" data-reveal>
+				{% for g in galleria %}
+				<figure class="da-gallery-item{% if loop.index > 8 %} is-hidden{% endif %}" data-gallery data-src="{{ asset('images/graphics_2026_07_15/homepage/' ~ g.img ~ '.webp') }}" data-caption="{{ g.cap }}" tabindex="0" role="button" aria-label="Apri: {{ g.cap }}">
+					<img src="{{ asset('images/graphics_2026_07_15/homepage/' ~ g.img ~ '.webp') }}"
+					     width="{{ g.w }}" height="{{ g.h }}"
+					     alt="Da Andrea, Casorezzo — {{ g.cap }}" loading="lazy" decoding="async">
+				</figure>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
+	{# lightbox — condiviso dalla gallery del locale #}
+	<div class="da-lightbox" id="da-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Galleria immagini">
+		<button class="da-lb-close" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
+		<button class="da-lb-nav da-lb-prev" aria-label="Immagine precedente"><i class="fa-solid fa-chevron-left"></i></button>
+		<figure class="da-lb-figure">
+			<img class="da-lb-img" src="" alt="">
+			<figcaption class="da-lb-caption"></figcaption>
+		</figure>
+		<button class="da-lb-nav da-lb-next" aria-label="Immagine successiva"><i class="fa-solid fa-chevron-right"></i></button>
+	</div>
 
 
 	{# ============================ Le cinque tappe · vite e serate ============================ #}
@@ -122,11 +255,6 @@
 				</article>
 				{% endfor %}
 			</div>
-
-			<blockquote class="da-lives-quote">
-				<i class="fa-solid fa-quote-left"></i>
-				<p>Io sono un autodidatta. Non ho fatto scuole di cucina: ho solo bruciato tantissime padelle, finché non è uscito il piatto come dicevo io.</p>
-			</blockquote>
 		</div>
 	</section>
 
@@ -155,22 +283,20 @@
 			<div data-reveal class="da-menu-head">
 				<span class="da-eyebrow">La carta</span>
 				<h2 class="da-h2">Un assaggio di ciò che <em>vi aspetta</em></h2>
-				<p>Dalla dispensa alla cantina: salumi, formaggi, piccoli morsi da condividere e una lista vini che promette di crescere. Ogni sera, l'identità in cucina vi guiderà nella scelta.</p>
+				<p>Due sezioni, un unico viaggio: la <em>Cucina</em> — la Dispensa e i piatti della sera — e l'<em>Enoteca</em>, con rossi, bianchi e bollicine da tutta Italia. Ogni sera, l'identità in cucina vi guiderà nella scelta.</p>
 			</div>
 
 			{% set categoryIcons = { rossi: 'fa-solid fa-wine-bottle', bianchi: 'fa-solid fa-wine-glass', bollicine: 'fa-solid fa-champagne-glasses' } %}
 
-			{# tabs — prima gli stuzzichini (cibo), poi i vini #}
+			{# tabs — due sezioni: prima la Cucina (cibo), poi l'Enoteca (vini) #}
 			<div class="da-tabs-wrap">
 				<div class="da-tabs">
-					<button class="da-tab active" data-tab="{{ stuzzichini.slug }}">
-						<i class="{{ stuzzichini.icon }}"></i>{{ stuzzichini.name }}
+					<button class="da-tab active" data-tab="{{ cucina.slug }}">
+						<i class="{{ cucina.icon }}"></i>{{ cucina.name }}
 					</button>
-					{% for c in wineCategories %}
-					<button class="da-tab" data-tab="{{ c.slug }}">
-						<i class="{{ categoryIcons[c.slug]|default('fa-solid fa-wine-glass') }}"></i>{{ c.name }}
+					<button class="da-tab" data-tab="enoteca">
+						<i class="fa-solid fa-wine-bottle"></i>Enoteca
 					</button>
-					{% endfor %}
 				</div>
 			</div>
 
@@ -180,52 +306,55 @@
 				bollicine: { tipo: 'Bollicine', bolla: 'Mosso', icon: 'fa-solid fa-champagne-glasses', cap: 'Franciacorta, Trento e prosecco: perlage fine per il brindisi.' }
 			} %}
 
-			{# panel — stuzzichini: card di anteprima per sezione + carta PDF completa #}
-			<div class="da-menu-panel active" data-panel="{{ stuzzichini.slug }}">
-				<p class="da-wine-cap"><i class="{{ stuzzichini.icon }}"></i> Piccoli morsi da condividere, divisi in quattro sezioni. Il dettaglio completo è nella carta.</p>
+			{# Anteprima cucina: poche card di sintesi, il dettaglio è nella carta PDF #}
+			{% set cucinaHighlights = [
+				{ icon: 'fa-solid fa-fish', name: 'I piatti della sera', cap: 'Rombo, fritto rosa, cavatelli estivi: il pescato e le proposte che cambiano ogni sera.' },
+				{ icon: 'fa-solid fa-bacon', name: 'La Dispensa', cap: 'Salumeria, formaggi, pesce sott’olio e affumicato, verdure, panificati e carni crude.' },
+				{ icon: 'fa-solid fa-ice-cream', name: 'Dolci & bevande', cap: 'Tortillas, pancake salati, gateau al cioccolato, birre Ayinger e caffè Oldani.' }
+			] %}
+
+			{# panel — Cucina: sintesi + carta PDF completa #}
+			<div class="da-menu-panel active" data-panel="{{ cucina.slug }}">
+				<p class="da-wine-cap"><i class="{{ cucina.icon }}"></i> La Dispensa di Andrea e i piatti della sera, da condividere o un piatto a testa.</p>
 				<div class="da-wine-grid">
-					{% for s in stuzzichini.sections %}
+					{% for h in cucinaHighlights %}
 					<article class="da-wine-card">
 						<div class="da-wine-card-head">
-							<span class="da-wine-card-icon"><i class="{{ s.icon }}"></i></span>
+							<span class="da-wine-card-icon"><i class="{{ h.icon }}"></i></span>
 							<div class="da-wine-card-title">
-								<h3 class="da-wine-card-name">{{ s.name }}</h3>
-								<p class="da-wine-card-year">{{ s.cap }}</p>
+								<h3 class="da-wine-card-name">{{ h.name }}</h3>
+								<p class="da-wine-card-year">{{ h.cap }}</p>
 							</div>
 						</div>
-						<ul class="da-stuzzi-list">
-							{% for item in s.items %}<li>{{ item }}</li>{% endfor %}
-						</ul>
 					</article>
 					{% endfor %}
 				</div>
 				<div class="da-menu-cta">
-					<a href="{{ asset('documents/carta-stuzzichini.pdf') }}" class="da-btn-primary da-btn-3d" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Scarica la carta — Stuzzichini</a>
+					<a href="{{ asset('documents/carta-cucina.pdf') }}" class="da-btn-primary da-btn-3d" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Scopri la carta — Cucina</a>
 				</div>
 			</div>
 
-			{# panels — vini #}
-			{% for c in wineCategories %}
-			{% set meta = wineMeta[c.slug]|default({ tipo: c.name, bolla: 'Fermo', icon: 'fa-solid fa-wine-glass', cap: '' }) %}
-			<div class="da-menu-panel" data-panel="{{ c.slug }}">
+			{# panel — Enoteca: sintesi per categoria + carta PDF completa #}
+			<div class="da-menu-panel" data-panel="enoteca">
+				<p class="da-wine-cap"><i class="fa-solid fa-wine-bottle"></i> Rossi, bianchi e bollicine da tutta Italia: la lista completa, con i prezzi, è nella carta.</p>
 				<div class="da-wine-grid">
-					{% for wine in c.wines|slice(0, 4) %}
+					{% for c in wineCategories %}
+					{% set meta = wineMeta[c.slug]|default({ icon: 'fa-solid fa-wine-glass', cap: '' }) %}
 					<article class="da-wine-card">
 						<div class="da-wine-card-head">
 							<span class="da-wine-card-icon"><i class="{{ meta.icon }}"></i></span>
 							<div class="da-wine-card-title">
-								<h3 class="da-wine-card-name">{{ wine.displayName }}</h3>
-								{% if wine.year %}<p class="da-wine-card-year">Annata {{ wine.year }}</p>{% endif %}
+								<h3 class="da-wine-card-name">{{ c.name }}</h3>
+								{% if meta.cap %}<p class="da-wine-card-year">{{ meta.cap }}</p>{% endif %}
 							</div>
 						</div>
 					</article>
 					{% endfor %}
 				</div>
 				<div class="da-menu-cta">
-					<a href="{{ asset('documents/carta-' ~ c.slug ~ '.pdf') }}" class="da-btn-primary da-btn-3d" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Scarica la carta — {{ c.name }}</a>
+					<a href="{{ asset('documents/carta-enoteca.pdf') }}" class="da-btn-primary da-btn-3d" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Scopri la carta — Enoteca</a>
 				</div>
 			</div>
-			{% endfor %}
 		</div>
 	</section>
 
