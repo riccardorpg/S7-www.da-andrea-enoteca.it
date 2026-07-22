@@ -279,9 +279,12 @@ a:hover { color: var(--cream); }
 /* 3D offset-border buttons — adapted from the Canvas "Wine" demo */
 .da-btn-3d { position: relative; z-index: 1; }
 .da-btn-3d > i, .da-btn-3d > span { position: relative; z-index: 1; }
-.da-btn-3d::after { content: ""; position: absolute; inset: 0; border: 2px solid var(--wine); border-radius: inherit; z-index: 0; transform: translate(7px, 7px); transition: transform .25s ease; pointer-events: none; }
+.da-btn-3d::after { content: ""; position: absolute; inset: 0; border: 2px solid var(--wine); border-radius: inherit; z-index: -1; transform: translate(7px, 7px); transition: transform .25s ease; pointer-events: none; }
 .da-btn-3d:hover::after { transform: translate(0, 0); }
 .da-btn-outline.da-btn-3d::after { border-color: var(--ember); }
+/* nav "Prenota": pill piccolo, offset 3D più contenuto */
+.da-cta.da-btn-3d::after { transform: translate(4px, 4px); }
+.da-cta.da-btn-3d:hover::after { transform: translate(0, 0); }
 
 /* ============================ La cantina e i ricordi (story) ============================ */
 .da-story { max-width: 820px; margin: 0 auto; text-align: center; }
@@ -535,6 +538,7 @@ textarea.da-input { resize: vertical; }
 	#copyrights .container { padding: 0 20px; }
 
 	.da-menu-grid { grid-template-columns: 1fr; }
+	.da-map-section { height: 420px; }
 }
 
 /* ---------- SM · ≤575px — smartphone portrait ---------- */
@@ -556,6 +560,13 @@ textarea.da-input { resize: vertical; }
 	.da-call, .da-wa { flex: none; width: 100%; }
 	.da-info-card { padding: 22px 20px; }
 	.da-sent { padding: 28px 22px; }
+	.da-map-section { height: 460px; }
+
+	/* nav compatta: logo e CTA più piccoli per stare comodi su smartphone */
+	.da-logo-img { height: 48px; }
+	.da-nav.scrolled .da-logo-img { height: 42px; }
+	.da-nav-mobile { gap: 8px; }
+	.da-mobile-cta { padding: 9px 15px; font-size: 12.5px; margin-right: 4px; }
 }
 
 /* ---------- XS · ≤399px — telefoni piccoli ---------- */
@@ -564,7 +575,10 @@ textarea.da-input { resize: vertical; }
 	#filosofia { padding: 0 13px; }
 	.da-hero { padding: 88px 13px 52px; }
 	.da-nav-inner { padding: 0 13px; }
-	.da-logo-img { height: 52px; }
+	.da-logo-img { height: 44px; }
+	.da-nav.scrolled .da-logo-img { height: 40px; }
+	.da-mobile-cta { padding: 8px 12px; font-size: 12px; }
+	.da-burger { width: 40px; height: 40px; font-size: 16px; }
 	.da-tabs { display: flex; width: 100%; }
 	.da-tab { flex: 1 1 auto; text-align: center; padding: 10px 12px; }
 	.da-btn-primary, .da-btn-outline { width: 100%; justify-content: center; }

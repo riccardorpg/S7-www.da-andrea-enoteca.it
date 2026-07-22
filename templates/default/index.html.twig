@@ -160,7 +160,6 @@
 					<img src="{{ asset('images/graphics_2026_07_15/da-andrea.jpg') }}"
 					     alt="Andrea da bambino accanto al papà davanti al forno: l'infanzia e la prima passione"
 					     loading="lazy">
-					<figcaption><i class="fa-solid fa-fire"></i> La pizza di papà · L'infanzia · La prima passione</figcaption>
 				</figure>
 
 				<div data-reveal class="da-story-body">
@@ -315,7 +314,6 @@
 
 			{# panel — Cucina: sintesi + carta PDF completa #}
 			<div class="da-menu-panel active" data-panel="{{ cucina.slug }}">
-				<p class="da-wine-cap"><i class="{{ cucina.icon }}"></i> La Dispensa di Andrea e i piatti della sera, da condividere o un piatto a testa.</p>
 				<div class="da-wine-grid">
 					{% for h in cucinaHighlights %}
 					<article class="da-wine-card">
@@ -336,7 +334,6 @@
 
 			{# panel — Enoteca: sintesi per categoria + carta PDF completa #}
 			<div class="da-menu-panel" data-panel="enoteca">
-				<p class="da-wine-cap"><i class="fa-solid fa-wine-bottle"></i> Rossi, bianchi e bollicine da tutta Italia: la lista completa, con i prezzi, è nella carta.</p>
 				<div class="da-wine-grid">
 					{% for c in wineCategories %}
 					{% set meta = wineMeta[c.slug]|default({ icon: 'fa-solid fa-wine-glass', cap: '' }) %}
