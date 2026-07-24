@@ -9,7 +9,7 @@
 parameters:
     IUBENDA_IT: '00000'
     # Indirizzo che riceve le richieste di prenotazione dal form
-    reservation_recipient: 'info@rpgmultimedia.it'
+    reservation_recipient: 'rporrati@rpgmultimedia.it'
 
 services:
     # default configuration for services in *this* file
